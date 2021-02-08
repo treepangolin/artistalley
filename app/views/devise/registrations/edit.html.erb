@@ -1,0 +1,57 @@
+<h2 class="mono">My Account</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-floating my-3 col-sm-10 col-lg-4">
+    <%= form.text_field :username, autocomplete: 'username', class: 'form-control', placeholder: 'Username' %>
+    <%= form.label :username, 'Username' %>
+  </div>
+
+  <div class="form-floating my-3 col-sm-10 col-lg-4">
+    <%= form.email_field :email, autocomplete: 'email', class: 'form-control', placeholder: 'Email' %>
+    <%= form.label :email, 'Email' %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="form-floating my-3 col-sm-10 col-lg-4">
+    <%= form.password_field :new_password, autocomplete: 'new-password', class: 'form-control', placeholder: 'Password' %>
+    <%= form.label :new_password, 'Change password' %>
+    <div class="form-text" id="passwordHelp">
+      <% if @minimum_password_length %>
+        Minimum <%= @minimum_password_length %> characters.
+      <% end %>
+      Leave this blank if you're not intending to change.
+    </div>
+  </div>
+
+  <div class="form-floating my-3 col-sm-10 col-lg-4">
+    <%= form.password_field :new_password_confirmation, autocomplete: 'new-password', class: 'form-control', placeholder: 'Confirm password' %>
+    <%= form.label :new_password_confirmation, 'Confirm new password' %>
+  </div>
+
+  <div class="form-floating my-3 col-sm-10 col-lg-4">
+    <%= form.password_field :current_password, autocomplete: 'current-password', class: 'form-control', placeholder: 'Password' %>
+    <%= form.label :current_password, 'Password' %>
+    <div class="form-text" id="passwordHelp">Authenticate all changes above by providing your current password.</div>
+  </div>
+
+  <div class="row g-3 align-items-center">
+    <div class="col-auto">
+      <%= form.button :submit, class: 'btn btn-primary' do %>
+        <i class="bi-arrow-right"></i> Update
+      <% end %>
+    </div>
+
+    <div class="col-auto">
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+<% end %>
+
+<%= button_to registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger mt-3' do %>
+  <i class="bi-person-x-fill"></i> Delete Account
+<% end %>

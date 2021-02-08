@@ -1,0 +1,24 @@
+<ul class="navbar-nav">
+  <li class="navbar-item dropdown">
+    <a href="" class="nav-link dropdown-toggle" id="navbarUserDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <i class="bi-shield-fill text-primary"></i>
+        <% else %>
+          <i class="bi-person-fill"></i>
+        <% end %>
+        <%= current_user.username %>
+      <% else %>
+        <i class="bi-person"></i>
+      <% end %>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarUserDropdownLink">
+      <% if user_signed_in? %>
+        <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
+        <li><%= link_to 'Edit account', edit_user_registration_path, class: 'dropdown-item' %></li>
+      <% else %>
+        <li><%= link_to 'Sign in', new_user_session_path, class: 'dropdown-item' %></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
