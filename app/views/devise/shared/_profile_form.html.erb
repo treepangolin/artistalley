@@ -1,0 +1,11 @@
+<div class="form-floating">
+  <%= form.text_field :username, autocomplete: 'username', class: 'form-control', placeholder: 'Username' %>
+  <%= form.label :username, 'Username' %>
+</div>
+
+<div class="my-3">
+  <%= form.label :avatar, 'Avatar' %>
+  <%= form.file_field :avatar, class: 'form-control' %>
+</div>
+
+<%= render 'devise/shared/submit_edit', form: form %>

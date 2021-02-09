@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+import "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "stylesheets/application"
@@ -13,10 +13,9 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import { Toast } from "bootstrap"
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
 
-document.addEventListener("turbolinks:load", () => {
+document.addEventListener("turbo:load", () => {
   var toastElList = [].slice.call(document.querySelectorAll('.toast'))
   var toastList = toastElList.map(function (toastEl) {
     return new Toast(toastEl)
@@ -24,3 +23,5 @@ document.addEventListener("turbolinks:load", () => {
 
   toastList.forEach(toast => toast.show())
 })
+
+import "controllers"

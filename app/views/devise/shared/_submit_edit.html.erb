@@ -1,0 +1,15 @@
+<hr>
+
+<div class="form-floating my-3">
+  <%= form.password_field :current_password, autocomplete: 'current-password', class: 'form-control', placeholder: 'Password' %>
+  <%= form.label :current_password, 'Password' %>
+  <div class="form-text" id="passwordHelp">Authenticate all changes above by providing your current password.</div>
+</div>
+
+<div class="row g-3 align-items-center">
+  <div class="col-auto">
+    <%= form.button :submit, class: 'btn btn-primary' do %>
+      <i class="bi-arrow-right"></i> Update
+    <% end %>
+  </div>
+</div>
