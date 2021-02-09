@@ -1,11 +1,16 @@
+<h2>Username</h2>
+
 <div class="form-floating">
   <%= form.text_field :username, autocomplete: 'username', class: 'form-control', placeholder: 'Username' %>
   <%= form.label :username, 'Username' %>
+
+  <div class="form-text" id="usernameHelp">
+    Changing this will make your current one available to others. It also changes your profile URL, so be careful!
+  </div>
 </div>
 
-<div class="my-3">
-  <%= form.label :avatar, 'Avatar' %>
-  <%= form.file_field :avatar, class: 'form-control' %>
-</div>
+<h2 class="mt-2">Avatar</h2>
+
+<%= form.file_field :avatar, class: 'form-control' %>
 
 <%= render 'devise/shared/submit_edit', form: form %>

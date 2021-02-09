@@ -9,7 +9,7 @@
         <% if current_user.avatar.attached? %>
           <%= image_tag current_user.avatar.variant(resize_to_limit: [128, 128]), height: 32, width: 32, class: 'rounded-circle' %>
         <% else %>
-          <i class="bi-question no-avatar"></i>
+          <i class="bi-question no-avatar__small"></i>
         <% end %>
       <% else %>
         <i class="bi-person"></i>
