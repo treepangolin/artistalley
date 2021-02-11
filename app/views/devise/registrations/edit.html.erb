@@ -39,14 +39,14 @@
         id="list-account"
         role="tabpanel"
         aria-labelledby="list-account-list">
-          <%= render 'devise/shared/email_password_form', form: form %>
+          <%= render partial: 'devise/shared/email_password_form', locals: { form: form } %>
         </div>
 
         <div class="tab-pane fade"
         id="list-profile"
         role="tabpanel"
         aria-labelledby="list-profile-list">
-          <%= render 'devise/shared/profile_form', form: form %>
+          <%= render partial: 'devise/shared/profile_form', locals: { form: form } %>
         </div>
     <% end %>
 
