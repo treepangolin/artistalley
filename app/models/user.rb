@@ -8,6 +8,8 @@ class User < ApplicationRecord
   enum role: [:default, :admin]
 
   has_one_attached :avatar
+  
+  has_many :posts
 
   attr_writer :login
 
