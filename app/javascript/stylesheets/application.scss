@@ -8,7 +8,15 @@ body {
   color: #fff;
 }
 
-.turbolinks-progress-bar {
+h1, h2, h3, h4 {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, .navbar-brand {
+  font-weight: 700;
+}
+
+.turbo-progress-bar {
   background-color: $primary;
 }
 
@@ -53,12 +61,4 @@ body {
 
 .gallery-image {
   width: 256px;
-}
-
-h1, h2, h3, h4 {
-  font-family: 'Poppins', sans-serif;
-}
-
-h1, .navbar-brand {
-  font-weight: 700;
 }

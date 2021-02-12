@@ -4,16 +4,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # Roles; app/models/ability.rb holds permissions for these
+  # Roles
   enum role: [:default, :admin]
 
   has_one_attached :avatar
   
   has_many :posts
 
+  # Allow user to sign in with either email or username
   attr_writer :login
 
+  # Shoutout to Django for allowing users with the same username as long as they're different cases
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+  # Only allow username to contain alphanumeric, periods & underscores
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
   # Set role to default on account creation

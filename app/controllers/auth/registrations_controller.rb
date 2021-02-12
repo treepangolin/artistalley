@@ -2,6 +2,7 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
+  # Modified from Devise source to support Turbo
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)

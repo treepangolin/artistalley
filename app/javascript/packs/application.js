@@ -9,12 +9,13 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "stylesheets/application"
 import "@popperjs/core"
-import "bootstrap-icons/font/bootstrap-icons.css"
+import "bootstrap-icons/font/bootstrap-icons.css" // Use icons anywhere with <i class="bi-[icon]"></i>
 import { Toast } from "bootstrap"
 
 Rails.start()
 ActiveStorage.start()
 
+// When page completely loads, show toasts for flash messages
 document.addEventListener("turbo:load", () => {
   var toastElList = [].slice.call(document.querySelectorAll('.toast'))
   var toastList = toastElList.map(function (toastEl) {
@@ -24,4 +25,5 @@ document.addEventListener("turbo:load", () => {
   toastList.forEach(toast => toast.show())
 })
 
+// import Stimulus controllers
 import "controllers"
