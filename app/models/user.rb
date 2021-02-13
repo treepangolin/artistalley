@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   
   has_many :posts
+  has_many :comments
 
   # Allow user to sign in with either email or username
   attr_writer :login

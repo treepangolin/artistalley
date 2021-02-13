@@ -1,7 +1,7 @@
 <h2>Username</h2>
 
 <div class="form-floating">
-  <%= form.text_field :username, autocomplete: 'username', class: 'form-control', placeholder: 'Username' %>
+  <%= form.text_field :username, autocomplete: 'username', class: 'form-control bg-dark border-dark text-white', placeholder: 'Username' %>
   <%= form.label :username, 'Username' %>
 
   <div class="form-text" id="usernameHelp">
@@ -11,6 +11,6 @@
 
 <h2 class="mt-2">Avatar</h2>
 
-<%= form.file_field :avatar, class: 'form-control' %>
+<%= form.file_field :avatar, class: 'form-control bg-dark border-dark text-white' %>
 
 <%= render 'devise/shared/submit_edit', form: form %>
