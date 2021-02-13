@@ -1,5 +1,21 @@
-<% if post.images.attached? %>
-  <%= link_to post do %>
-    <%= image_tag post.images.first.variant(resize_to_limit: [512, 512]), class: 'rounded-3 gallery-image' %>
+<% if post.image.attached? %>
+  <%= link_to post, class: 'm-1 flex-grow-1 gallery-link shadow' do %>
+    <%= image_tag post.image.variant(resize_to_limit: [512, 512]), class: 'rounded-3 gallery-image' %>
   <% end %>
+<% end %>
+
+<% unless post.image.attached? || post.body.empty? %>
+  <div class="card bg-dark rounded-3 m-1 border-0 journal-card">
+    <div class="card-body text-fade overflow-hidden">
+      <h2 class="card-title text-muted float-end ms-3">
+        <i class="bi-journal-text"></i>
+      </h2>
+
+      <p class="card-text">
+        <%= post.body %>
+      </p> 
+    </div>
+
+    <%= link_to '', post, class: 'stretched-link' %>
+  </div>
 <% end %>

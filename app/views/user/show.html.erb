@@ -1,7 +1,9 @@
 <div class="row">
+  <!-- User card (username, bio, details) -->
   <div class="col-xl-3 col-md-4 col-sm-12">
     <div class="card bg-dark text-center">
       <div class="card-body row justify-content-center align-items-center">
+        <!-- Avatar -->
         <div class="col-4 col-sm-4 col-md-12">
           <% if @user.avatar.attached? %>
             <%= image_tag @user.avatar.variant(resize_to_limit: [256, 256]), class: 'rounded-circle profile-avatar w-100' %>
@@ -9,7 +11,9 @@
             <i class="bi-question no-avatar__large card-img-top"></i>
           <% end %>
         </div>
+        <!-- End avatar -->
 
+        <!-- Username & details -->
         <div class="col-8 col-sm-6 col-md-12">
           <h4 class="card-title"><%= @user.username %></h4>
           <% unless @user.location.blank? %>
@@ -22,8 +26,11 @@
             <p class="card-text"><%= @user.bio %></p>
           <% end %>
         </div>
+        <!-- End details -->
       </div>
 
+      <!-- Button to edit bio if this is current_user's profile -->
+      <%# Include Edit Profile modal if user can edit this profile %>
       <% if @user == current_user %>
         <div class="card-footer">
           <%= link_to '#', class: 'btn btn-outline-primary rounded-pill', data: { 'bs-toggle': 'modal', 'bs-target': '#editProfileModal' } do %>
@@ -31,16 +38,20 @@
           <% end %>
         </div>
       <% end %>
+      <!-- End button -->
     </div>
   </div>
 
+  <!-- Profile content -->
   <div class="col-xl-9 col-md-8 col-sm-12">
     <h1 class="display">Wall</h1>
 
-    <div class="d-flex justify-content-between flex-wrap">
+    <div class="d-flex justify-content-center flex-wrap">
       <%= render partial: 'shared/post', collection: @user.posts %>
     </div>
   </div>
+  <!-- End profile content -->
 
+  <%# Include Edit Profile modal if user can edit this profile %>
   <%= render 'edit_modal' if @user == current_user %>
 </div>

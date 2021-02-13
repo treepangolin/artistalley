@@ -1,6 +1,9 @@
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <%= link_to 'arthub', root_path, class: 'navbar-brand' %>
+    <!-- Brand text -->
+    <%= link_to 'ArtistAlley', root_path, class: 'navbar-brand' %>
+
     <button class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -14,7 +17,19 @@
       <ul class="navbar-nav nav-pills me-auto mb-2 mb-lg-0">
         <li class="nav-item"><%= link_to 'Posts', posts_path, class: nav_active('posts') %></li>
       </ul>
+
+      <ul class="navbar-nav me-2">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to new_post_path, class: 'btn btn-outline-primary rounded-pill' do %>
+              <i class="bi-upload standalone"></i>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+
       <%= render 'layouts/user_nav' %>
     </div>
   </div>
 </nav>
+<!-- End navbar -->

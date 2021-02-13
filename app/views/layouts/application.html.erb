@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Arthub (working title)</title>
+    <title>ArtistAlley (working title)</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,7 +13,10 @@
   <body>
     <div class="container my-5">
       <%= render 'layouts/navbar' %>
-      <%= yield %>
+      
+      <div class="container">
+        <%= yield %>
+      </div>
     </div>
     
     <div class="toast-container p-4 top-0 start-50 translate-middle-x position-absolute">

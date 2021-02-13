@@ -1,2 +1,46 @@
-<h1>Post</h1>
-<p><%= @post.body %></p>
+<div class="row justify-content-center">
+  <% if @post.image.attached? %>
+    <div class="col-lg-8 mb-3">
+      <%= image_tag @post.image.variant(resize_to_limit: [1000, 1000], quality: 100), class: 'rounded img-fluid' if @post.image.attached? %>
+    </div>
+  <% end %>
+
+  <%= content_tag(:div, class: @post.image.attached? ? 'col-lg-4' : 'col-8') do %>
+    <div class="card bg-dark">
+      <div class="card-header position-relative">
+        <div class="d-flex align-items-center">
+          <%= link_to @post.user, class: 'stretched-link' do %>
+            <%= image_tag @post.user.avatar.variant(resize_to_limit: [64, 64]), class: 'rounded-circle me-3' %>
+          <% end %>
+
+          <div>
+            <h5 class="card-title"><%= @post.user.username %></h5>
+
+            <h6 class="card-subtitle text-muted">
+              Posted
+
+              <%# If post was created less than 7 days ago, then display relative time; otherwise, timestamp %>
+              <% if @post.created_at < 5.minutes.ago %>
+                <%= @post.created_at.strftime("#{@post.created_at.day.ordinalize} of %B, %Y") %>
+              <% else %>
+                <%= time_ago_in_words(@post.created_at) + ' ago' %>
+              <% end %>
+            </h6>
+          </div>
+        </div>
+      </div>
+
+      <% unless @post.body.empty? %>
+        <div class="card-body">
+          <div class="row align-items-center">
+            <% if @post.image.attached? %>
+              <div class="col-sm-2"><h2><i class="bi-blockquote-left text-muted"></i></h2></div>
+            <% end %>
+
+            <div class="<%= @post.image.attached? ? 'col-sm-10' : 'card-text' %>"><%= @post.body %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

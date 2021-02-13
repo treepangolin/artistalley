@@ -1,5 +1,5 @@
 {
-  "name": "arthub",
+  "name": "artistalley",
   "private": true,
   "dependencies": {
     "@hotwired/turbo-rails": "^7.0.0-beta.5",

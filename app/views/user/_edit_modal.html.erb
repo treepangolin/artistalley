@@ -1,11 +1,17 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+  <!-- Edit Profile modal -->
   <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content bg-dark">
+        <!-- Header -->
         <div class="modal-header border-0 pb-0">
           <h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
         </div>
+        <!-- End header -->
+
+        <!-- Body -->
         <div class="modal-body">
           <div class="form-floating">
             <%= form.text_area :bio, class: 'form-control', placeholder: 'Bio', style: 'height: 10rem; resize: none' %>
@@ -20,13 +26,18 @@
             </div>
           </div>
         </div>
+        <!-- End body -->
+
+        <!-- Footer -->
         <div class="modal-footer border-0 pt-0">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <%= form.button :submit, class: 'btn btn-primary' do %>
-            <i class="bi-check2"></i> Update
+            Update <i class="bi-arrow-right"></i>
           <% end %>
         </div>
+        <!-- End footer -->
       </div>
     </div>
   </div>
+  <!-- End modal -->
 <% end %>
