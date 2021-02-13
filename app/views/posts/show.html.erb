@@ -42,12 +42,5 @@
     </div>
 
     <h2 class="mt-3">Comments</h2>
-
-    <%= render partial: 'comments/form', locals: { comment: Comment.new, commentable: @post } %>
-
-    <%= turbo_stream_from @post, :comments %>
-    <%= tag.div id: "#{dom_id(@post)}_comments" do %>
-      <%= render @post.comments %>
-    <% end %>
   <% end %>
 </div>

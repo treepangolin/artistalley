@@ -1,16 +1,19 @@
-<h2>Username</h2>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, id: dom_id(resource)) do |form| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <h2>Username</h2>
 
-<div class="form-floating">
-  <%= form.text_field :username, autocomplete: 'username', class: 'form-control bg-dark border-dark text-white', placeholder: 'Username' %>
-  <%= form.label :username, 'Username' %>
+  <div class="form-floating">
+    <%= form.text_field :username, autocomplete: 'username', class: 'form-control bg-dark border-dark text-white', placeholder: 'Username' %>
+    <%= form.label :username, 'Username' %>
 
-  <div class="form-text" id="usernameHelp">
-    Changing this will make your current one available to others. It also changes your profile URL, so be careful!
+    <div class="form-text" id="usernameHelp">
+      Changing this will make your current one available to others. It also changes your profile URL, so be careful!
+    </div>
   </div>
-</div>
 
-<h2 class="mt-2">Avatar</h2>
+  <h2 class="mt-2">Avatar</h2>
 
-<%= form.file_field :avatar, class: 'form-control bg-dark border-dark text-white' %>
+  <%= form.file_field :avatar, class: 'form-control bg-dark border-dark text-white' %>
 
-<%= render 'devise/shared/submit_edit', form: form %>
+  <%= render 'devise/shared/submit_edit', form: form %>
+<% end %>

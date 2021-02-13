@@ -14,12 +14,12 @@
         <!-- Body -->
         <div class="modal-body">
           <div class="form-floating">
-            <%= form.text_area :bio, class: 'form-control', placeholder: 'Bio', style: 'height: 10rem; resize: none' %>
+            <%= form.text_area :bio, class: 'form-control bg-dark border-secondary text-white', placeholder: 'Bio', style: 'height: 10rem; resize: none' %>
             <%= form.label :bio %>
           </div>
 
           <div class="form-floating mt-3">
-            <%= form.text_field :location, class: 'form-control', placeholder: 'Location' %>
+            <%= form.text_field :location, class: 'form-control bg-dark border-secondary text-white', placeholder: 'Location' %>
             <%= form.label :location %>
             <div class="form-text" id="locationHelp">
               Optional, and doesn't have to be specific.

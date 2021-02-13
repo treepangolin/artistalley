@@ -1,63 +1,67 @@
-<h1>Account Settings</h1>
+<div class="d-flex flex-wrap">
+  <div class="nav flex-column flex-grow-1 flex-lg-grow-0 me-lg-3 nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <h1>Account Settings</h1>
 
-<div class="row">
-  <div class="col-md-4">
-    <div class="list-group" id="list-tab" role="tablist">
-      <a href="#list-account"
-      class="list-group-item list-group-item-action active"
-      id="list-account-list"
-      data-bs-toggle="list"
-      role="tab"
-      aria-controls="account">Email & Password</a>
+    <a class="nav-link active text-white"
+            id="v-pills-email-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#v-pills-email"
+            type="button"
+            role="tab"
+            aria-controls="v-pills-email"
+            aria-selected="true">
+      Email & Password
+    </a>
 
-      <a href="#list-profile"
-      class="list-group-item list-group-item-action"
-      id="list-profile-list"
-      data-bs-toggle="list"
-      role="tab"
-      aria-controls="profile">My Profile</a>
+    <a class="nav-link text-white"
+            id="v-pills-profile-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#v-pills-profile"
+            type="button"
+            role="tab"
+            aria-controls="v-pills-profile"
+            aria-selected="false">
+      Profile
+    </a>
 
-      <a href="#list-danger"
-      class="list-group-item list-group-item-action list-group-item-danger"
-      id="list-danger-list"
-      data-bs-toggle="list"
-      role="tab"
-      aria-controls="danger">Danger Zone</a>
-    </div>
+    <a class="nav-link text-white"
+            id="v-pills-profile-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#v-pills-danger"
+            type="button"
+            role="tab"
+            aria-controls="v-pills-danger"
+            aria-selected="false">
+      Danger Zone
+    </a>
 
     <%= link_to :back, class: 'btn btn-secondary mt-3' do %>
       <i class="bi-arrow-return-left"></i> Back
     <% end %>
   </div>
 
-  <div class="col-md-8">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, id: dom_id(resource)) do |form| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="tab-content flex-grow-1 flex-lg-grow-0" id="list-tabContent">
+    <div class="tab-pane fade show active"
+          id="v-pills-email"
+          role="tabpanel"
+          aria-labelledby="v-pills-email-tab">
+      <%= render partial: 'devise/shared/email_password_form' %>
+    </div>
 
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active"
-        id="list-account"
-        role="tabpanel"
-        aria-labelledby="list-account-list">
-          <%= render partial: 'devise/shared/email_password_form', locals: { form: form } %>
-        </div>
+    <div class="tab-pane fade"
+          id="v-pills-profile"
+          role="tabpanel"
+          aria-labelledby="v-pills-profile-tab">
+      <%= render partial: 'devise/shared/profile_form' %>
+    </div>
 
-        <div class="tab-pane fade"
-        id="list-profile"
+    <div class="tab-pane fade"
+        id="v-pills-danger"
         role="tabpanel"
-        aria-labelledby="list-profile-list">
-          <%= render partial: 'devise/shared/profile_form', locals: { form: form } %>
-        </div>
-    <% end %>
-
-        <div class="tab-pane fade"
-        id="list-danger"
-        role="tabpanel"
-        aria-labelledby="list-danger-list">
-          <%= button_to registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' do %>
-            <i class="bi-person-x-fill"></i> Delete Account
-          <% end %>
-        </div>
-      </div>
+        aria-labelledby="v-pills-danger-tab">
+      <%= button_to registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' do %>
+        <i class="bi-person-x-fill"></i> Delete Account
+      <% end %>
+    </div>
   </div>
 </div>

@@ -1,13 +1,13 @@
-<h2 class="mono">Log in</h2>
+<h1>Log in</h1>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
   <div class="form-floating my-3 col-sm-10 col-lg-4">
-    <%= form.text_field :login, autocomplete: 'email', class: 'form-control', placeholder: 'Login' %>
+    <%= form.text_field :login, autocomplete: 'email', class: 'form-control bg-dark border-dark text-white', placeholder: 'Login' %>
     <%= form.label :login, 'Username or email' %>
   </div>
 
   <div class="form-floating my-3 col-sm-10 col-lg-4">
-    <%= form.password_field :password, autocomplete: 'current-password', class: 'form-control', placeholder: 'Password' %>
+    <%= form.password_field :password, autocomplete: 'current-password', class: 'form-control bg-dark border-dark text-white', placeholder: 'Password' %>
     <%= form.label :password, 'Password' %>
   </div>
 

@@ -1,20 +1,20 @@
-<h2 class="mono">New Account</h2>
+<h1>New Account</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="form-floating my-3 col-sm-10 col-lg-4">
-    <%= form.text_field :username, autocomplete: 'username', class: 'form-control', placeholder: 'Username' %>
+    <%= form.text_field :username, autocomplete: 'username', class: 'form-control bg-dark border-dark text-white', placeholder: 'Username' %>
     <%= form.label :username, 'Username' %>
   </div>
 
   <div class="form-floating my-3 col-sm-10 col-lg-4">
-    <%= form.email_field :email, autocomplete: 'email', class: 'form-control', placeholder: 'Email' %>
+    <%= form.email_field :email, autocomplete: 'email', class: 'form-control bg-dark border-dark text-white', placeholder: 'Email' %>
     <%= form.label :email, 'Email' %>
   </div>
 
   <div class="form-floating my-3 col-sm-10 col-lg-4">
-    <%= form.password_field :password, autocomplete: 'new-password', class: 'form-control', placeholder: 'Password' %>
+    <%= form.password_field :password, autocomplete: 'new-password', class: 'form-control bg-dark border-dark text-white', placeholder: 'Password' %>
     <%= form.label :password, 'Password' %>
 
     <% if @minimum_password_length %>
@@ -23,7 +23,7 @@
   </div>
 
   <div class="form-floating my-3 col-sm-10 col-lg-4">
-    <%= form.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control', placeholder: 'Confirm password' %>
+    <%= form.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control bg-dark border-dark text-white', placeholder: 'Confirm password' %>
     <%= form.label :password_confirmation, 'Confirm password' %>
   </div>
 
