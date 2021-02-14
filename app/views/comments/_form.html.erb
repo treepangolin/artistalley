@@ -1,6 +1,6 @@
-<% model = [local_assigns[:commentable], comment].compact %>
+<%= form_with model: [commentable, Comment.new], local: true, html: { class: local_assigns[:class], data: { target: local_assigns[:target] } } do |form| %>
+  <%= form.hidden_field :parent_id, value: local_assigns[:parent_id] %>
 
-<%= form_with model: model, id: dom_id_for_records(*model) do |form| %>
   <% if form.object.errors.any? %>
     <div>
       <% form.object.errors.full_messages.each do |message| %>
@@ -9,11 +9,11 @@
     </div>
   <% end %>
 
-  <div class="form-floating dark">
-    <%= form.text_area :body, class: 'form-control bg-dark border-dark text-white', placeholder: 'Comment', style: 'height: 8rem' %>
+  <div class="form-floating">
+    <%= form.text_area :body, class: 'form-control bg-dark border-dark text-white', placeholder: 'Comment', style: 'height: 6rem' %>
     <%= form.label :body, 'New Comment', class: 'text-white' %>
   </div>
 
-  <%= form.submit class: 'btn btn-primary mt-3' %>
+  <%= form.submit class: 'btn btn-primary my-3' %>
   <%= link_to 'Cancel', comment, class: 'btn btn-secondary mt-3' if form.object.persisted? %>
 <% end %>

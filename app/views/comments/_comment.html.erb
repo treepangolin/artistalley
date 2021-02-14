@@ -1,39 +1,41 @@
-<%= turbo_stream_from comment %>
-<%= turbo_frame_tag comment do %>
-  <div class="card bg-dark mt-3">
-    <div class="card-body">
-      <div class="card-text"><%= comment.body %></div>
-    </div>
-
-    <div class="card-footer position-relative">
-      <div class="d-flex align-items-center">
+<div data-controller="reply">
+  <div class="card bg-dark mb-2">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div class="d-flex flex-row align-items-center">
         <%= link_to comment.user do %>
-          <%= image_tag comment.user.avatar.variant(resize_to_limit: [32, 32]), class: 'rounded-circle me-3' %>
+          <%= image_tag comment.user.avatar.variant(resize_to_limit: [24, 24]), class: 'rounded-circle me-2' %>
         <% end %>
 
-        <div>
-          <h6 class="card-title mb-0">
-            <%= comment.user.username %>
+        <small class="me-2">
+          <%= link_to comment.user.username, comment.user, class: 'text-decoration-none' %>
+        </small>
+      </div>
 
-            <small class="text-muted">
-              &middot;
-              <% if comment.created_at < 7.days.ago %>
-                <%= comment.created_at.strftime("#{comment.created_at.day.ordinalize} of %B, %Y") %>
-              <% else %>
-                <%= time_ago_in_words(comment.created_at) + ' ago' %>
-              <% end %>
+      <small>
+        <% if comment.created_at < 7.days.ago %>
+          <%= comment.created_at.strftime("#{comment.created_at.day.ordinalize} of %B, %Y") %>
+        <% else %>
+          <%= time_ago_in_words(comment.created_at) + ' ago' %>
+        <% end %>
+      </small>
+    </div>
 
-              <%= link_to edit_comment_path(comment), class: 'btn btn-outline-secondary btn-sm ms-1' do %>
-                <i class="bi-pencil-fill"></i>
-              <% end %>
+    <div class="card-body">
+      <p class="card-text"><%= comment.body %></p>
+    </div>
 
-              <%= link_to comment_path(comment), class: 'btn btn-outline-danger btn-sm ms-1', method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <i class="bi-trash2-fill"></i>
-              <% end %>
-            </small>
-          </h6>
-        </div>
+    <div class="card-footer d-flex justify-content-between mt-2 align-items-center">
+      <div>
+        <%= link_to '#', data: { action: 'click->reply#toggle' }, class: 'text-decoration-none' do %>
+          <i class="bi-reply-fill standalone"></i>&nbsp;Reply
+        <% end %>
       </div>
     </div>
   </div>
-<% end %>
+
+  <%= render partial: 'comments/form', locals: { commentable: comment.commentable, parent_id: comment.id, class: 'd-none ms-3', target: 'reply.form' } %>
+
+  <div class="<%= 'ms-3 ps-3 border-start border-3 border-dark' unless comment.comments.empty? %>">
+    <%= render comment.comments.order(created_at: :desc) %>
+  </div>
+</div>
