@@ -11,11 +11,13 @@
         <i class="far fa-file-alt"></i>
       </h2>
 
-      <p class="card-text">
-        <%= post.body %>
-      </p> 
-    </div>
+      <%= tag.h5 post.title, class: 'rounded-bold' unless post.title.blank? %>
 
-    <%= link_to '', post, class: 'stretched-link' %>
+      <%= tag.p class: post.title.blank? ? 'card-text' : 'card-text text-secondary' do %>
+        <%= post.body %>
+      <% end %>
+
+      <%= link_to '', post, class: 'stretched-link' %>
+    </div>
   </div>
 <% end %>

@@ -1,18 +1,16 @@
 $primary: #8540f5;
 
 @import "bootstrap";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@700&display=swap');
 
 body {
   background: rgb(13, 17, 23);
   color: #fff;
+  font-family: 'Inter', $font-family-sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
-}
-
-h1, .navbar-brand {
+h1, .navbar-brand, .rounded-bold {
+  font-family: 'Poppins', $font-family-sans-serif;
   font-weight: 700;
 }
 
