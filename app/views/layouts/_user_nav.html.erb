@@ -3,16 +3,16 @@
     <a class="nav-link dropdown-toggle p-0" id="navbarUserDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <% if user_signed_in? %>
         <% if current_user.admin? %>
-          <i class="bi-shield-fill text-primary"></i>
+          <i class="fas fa-hammer text-primary"></i>
         <% end %>
 
         <% if current_user.avatar.attached? %>
           <%= image_tag current_user.avatar.variant(resize_to_limit: [128, 128]), height: 32, width: 32, class: 'rounded-circle' %>
         <% else %>
-          <i class="bi-question no-avatar__small"></i>
+          <i class="fas fa-question no-avatar__small"></i>
         <% end %>
       <% else %>
-        <i class="bi-person"></i>
+        <i class="fas fa-sign-in-alt"></i>
       <% end %>
     </a>
     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarUserDropdownLink">
@@ -23,14 +23,14 @@
 
         <li>
           <%= link_to current_user, class: 'dropdown-item' do %>
-            <i class="bi-person-circle"></i>
+            <i class="fas fa-user-circle"></i>
             &nbsp;Profile
           <% end %>
         </li>
 
         <li>
           <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
-            <i class="bi-gear-fill"></i>
+            <i class="fas fa-cog"></i>
             &nbsp;Settings
           <% end %>
         </li>
@@ -39,7 +39,7 @@
 
         <li>
           <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
-            <i class="bi-box-arrow-right"></i>
+            <i class="fas fa-sign-out-alt"></i>
             &nbsp;Sign out
           <% end %>
         </li>

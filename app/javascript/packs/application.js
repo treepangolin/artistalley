@@ -9,7 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "stylesheets/application"
 import "@popperjs/core"
-import "bootstrap-icons/font/bootstrap-icons.css" // Use icons anywhere with <i class="bi-[icon]"></i>
+import "@fortawesome/fontawesome-free/css/all"
 import { Toast } from "bootstrap"
 
 Rails.start()

@@ -24,13 +24,17 @@
       <p class="card-text"><%= comment.body %></p>
     </div>
 
-    <div class="card-footer d-flex justify-content-between mt-2 align-items-center">
-      <div>
-        <%= link_to '#', data: { action: 'click->reply#toggle' }, class: 'text-decoration-none' do %>
-          <i class="bi-reply-fill standalone"></i>&nbsp;Reply
+    <% if user_signed_in? && comment.user == current_user %>
+      <div class="card-footer d-flex justify-content-start align-items-center">
+        <%= link_to '#', data: { action: 'click->reply#toggle' }, class: 'text-decoration-none link-secondary me-2' do %>
+          <i class="fas fa-reply"></i>&nbsp;Reply
+        <% end %>
+
+        <%= link_to [comment.commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none link-secondary' do %>
+          <i class="fas fa-trash"></i>&nbsp;Delete
         <% end %>
       </div>
-    </div>
+    <% end %>
   </div>
 
   <%= render partial: 'comments/form', locals: { commentable: comment.commentable, parent_id: comment.id, class: 'd-none ms-3', target: 'reply.form' } %>

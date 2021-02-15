@@ -8,7 +8,7 @@
           <% if @user.avatar.attached? %>
             <%= image_tag @user.avatar.variant(resize_to_limit: [256, 256]), class: 'rounded-circle profile-avatar w-100' %>
           <% else %>
-            <i class="bi-question no-avatar__large card-img-top"></i>
+            <i class="fas fa-question no-avatar__large card-img-top"></i>
           <% end %>
         </div>
         <!-- End avatar -->
@@ -18,7 +18,7 @@
           <h4 class="card-title"><%= @user.username %></h4>
           <% unless @user.location.blank? %>
             <h6 class="card-subtitle text-muted mb-2">
-              <i class="bi-geo-alt-fill"></i>&nbsp;<%= @user.location %>
+              <i class="fas fa-map-marker-alt me-2"></i><%= @user.location %>
             </h6>
           <% end %>
 
@@ -34,7 +34,7 @@
       <% if @user == current_user %>
         <div class="card-footer">
           <%= link_to '#', class: 'btn btn-outline-primary rounded-pill', data: { 'bs-toggle': 'modal', 'bs-target': '#editProfileModal' } do %>
-            <i class="bi-pencil"></i>&nbsp;Edit
+            <i class="fas fa-edit"></i>&nbsp;Edit
           <% end %>
         </div>
       <% end %>
