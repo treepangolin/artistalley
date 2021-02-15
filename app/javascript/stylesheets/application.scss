@@ -33,6 +33,11 @@ h1, .navbar-brand, .rounded-bold {
   margin-bottom: 1em;
 }
 
+mark {
+  background-color: rgba(252, 248, 227, 0.75) !important;
+  border-radius: 0.275em;
+}
+
 @mixin no-avatar {
   background: rgb(100, 100, 100);
   color: white;

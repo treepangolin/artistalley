@@ -35,7 +35,7 @@
       </p>
     </div>
 
-    <% if user_signed_in? %>
+    <% if user_signed_in? && !comment.deleted? %>
       <div class="card-footer d-flex justify-content-start align-items-center">
         <%= link_to '#', data: { action: 'click->replies#toggle' }, class: 'text-decoration-none link-secondary me-2' do %>
           <i class="fas fa-reply"></i>&nbsp;Reply

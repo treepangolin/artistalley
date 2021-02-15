@@ -1,46 +1,5 @@
 <div class="row">
-  <!-- User card (username, bio, details) -->
-  <div class="col-xl-3 col-md-4 col-sm-12">
-    <div class="card bg-dark text-center">
-      <div class="card-body row justify-content-center align-items-center">
-        <!-- Avatar -->
-        <div class="col-4 col-sm-4 col-md-12">
-          <% if @user.avatar.attached? %>
-            <%= image_tag @user.avatar.variant(resize_to_limit: [256, 256]), class: 'rounded-circle profile-avatar w-100' %>
-          <% else %>
-            <i class="fas fa-question no-avatar__large card-img-top"></i>
-          <% end %>
-        </div>
-        <!-- End avatar -->
-
-        <!-- Username & details -->
-        <div class="col-8 col-sm-6 col-md-12">
-          <h4 class="card-title"><%= @user.username %></h4>
-          <% unless @user.location.blank? %>
-            <h6 class="card-subtitle text-muted mb-2">
-              <i class="fas fa-map-marker-alt me-2"></i><%= @user.location %>
-            </h6>
-          <% end %>
-
-          <% unless @user.bio.blank? %>
-            <p class="card-text"><%= @user.bio %></p>
-          <% end %>
-        </div>
-        <!-- End details -->
-      </div>
-
-      <!-- Button to edit bio if this is current_user's profile -->
-      <%# Include Edit Profile modal if user can edit this profile %>
-      <% if @user == current_user %>
-        <div class="card-footer">
-          <%= link_to '#', class: 'btn btn-outline-primary rounded-pill', data: { 'bs-toggle': 'modal', 'bs-target': '#editProfileModal' } do %>
-            <i class="fas fa-edit"></i>&nbsp;Edit
-          <% end %>
-        </div>
-      <% end %>
-      <!-- End button -->
-    </div>
-  </div>
+  <%= render 'user_card' %>
 
   <!-- Profile content -->
   <div class="col-xl-9 col-md-8 col-sm-12">
