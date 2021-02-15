@@ -1,4 +1,7 @@
-<div data-controller="reply">
+<% nesting = local_assigns.fetch(:nesting, 1) %>
+<% continue_thread = local_assigns[:continue_thread] %>
+
+<%= tag.div id: dom_id(comment), data: { controller: 'replies' } do %>
   <div class="card bg-dark mb-2">
     <div class="card-header d-flex justify-content-between align-items-center">
       <div class="d-flex flex-row align-items-center">
@@ -15,13 +18,15 @@
         </small>
       </div>
 
-      <small>
-        <% if comment.created_at < 7.days.ago %>
-          <%= comment.created_at.strftime("#{comment.created_at.day.ordinalize} of %B, %Y") %>
-        <% else %>
-          <%= time_ago_in_words(comment.created_at) + ' ago' %>
-        <% end %>
-      </small>
+      <%= link_to url_for(comment: comment.id, anchor: dom_id(comment)), class: 'text-decoration-none link-secondary' do %>
+        <small>
+          <% if comment.created_at < 7.days.ago %>
+            <%= comment.created_at.strftime("#{comment.created_at.day.ordinalize} of %B, %Y") %>
+          <% else %>
+            <%= time_ago_in_words(comment.created_at) + ' ago' %>
+          <% end %>
+        </small>
+      <% end %>
     </div>
 
     <div class="card-body <%= 'deleted-comment' if comment.deleted? %>">
@@ -32,7 +37,7 @@
 
     <% if user_signed_in? %>
       <div class="card-footer d-flex justify-content-start align-items-center">
-        <%= link_to '#', data: { action: 'click->reply#toggle' }, class: 'text-decoration-none link-secondary me-2' do %>
+        <%= link_to '#', data: { action: 'click->replies#toggle' }, class: 'text-decoration-none link-secondary me-2' do %>
           <i class="fas fa-reply"></i>&nbsp;Reply
         <% end %>
 
@@ -45,9 +50,15 @@
     <% end %>
   </div>
 
-  <%= render partial: 'comments/form', locals: { commentable: comment.commentable, parent_id: comment.id, class: 'd-none ms-3', target: 'reply.form' } %>
+  <%= render partial: 'comments/form', locals: { commentable: comment.commentable, parent_id: comment.id, class: 'd-none ms-3', target: 'replies.form' } %>
 
-  <div class="<%= 'ms-3 ps-3 border-start border-3 border-dark' unless comment.comments.empty? %>">
-    <%= render comment.comments.order(created_at: :desc) %>
-  </div>
-</div>
+  <% if nesting >= continue_thread && comment.comments.any? %>
+    <div class="mb-3">
+        <%= link_to 'More replies...', url_for(comment: comment.id, anchor: dom_id(comment)), class: 'py-3' %>
+    </div>
+  <% elsif comment.comments.any? %>
+    <div class="ms-3 ps-3 border-start border-3 border-dark">
+      <%= render comment.comments.order(created_at: :desc), continue_thread: continue_thread, nesting: nesting + 1 %>
+    </div>
+  <% end %>
+<% end %>

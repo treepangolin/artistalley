@@ -7,7 +7,7 @@
     </div>
   <% end %>
 
-  <%= content_tag(:div, class: @post.image.attached? ? 'col-lg-4' : 'col-lg-8') do %>
+  <%= tag.div class: @post.image.attached? ? 'col-lg-4' : 'col-lg-8' do %>
     <div class="card bg-dark">
       <div class="card-header position-relative">
         <div class="d-flex align-items-center">
@@ -45,16 +45,25 @@
       <% end %>
     </div>
 
-    
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center" id="comments">
       <% unless @post.comments.empty? && !user_signed_in? %>
         <h4 class="mt-3">Comments</h4>
       <% end %>
 
       <%= render partial: 'comments/form', locals: { commentable: @post } if user_signed_in? %>
 
-      <%= render @post.comments.where(parent_id: nil) %>
+      <% if params[:comment] %>
+        <div class="mb-1">
+          <small class="text-muted">
+            Viewing a single thread.
+            <%= link_to 'See all comments...', url_for(), class: 'text-decoration-none' %>
+          </small>
+        </div>
+      <% end %>
+      <%= render @comments, continue_thread: 4 %>
     </div>
+
+    <%#= paginate @comments %>
   <% end %>
 
   <% if @post.image.attached? %>
