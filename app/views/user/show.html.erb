@@ -5,8 +5,16 @@
   <div class="col-xl-9 col-md-8 col-sm-12">
     <h1 class="display">Wall</h1>
 
-    <div class="d-flex justify-content-center flex-wrap">
-      <%= render partial: 'shared/post', collection: @user.posts %>
+    <div class="d-flex justify-content-center flex-wrap <%= 'h-75' if @user.posts.empty? %>">
+      <% if @user.posts.any? %>
+        <%= render partial: 'shared/post', collection: @user.posts %>
+      <% else %>
+        <div class="align-self-center">
+          <h1 class="text-muted">
+            <i class="fas fa-wind"></i> <i class="fas fa-leaf"></i>
+          </h1>
+        </div>
+      <% end %>
     </div>
   </div>
   <!-- End profile content -->

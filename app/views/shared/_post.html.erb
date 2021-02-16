@@ -13,9 +13,9 @@
 
       <%= tag.h5 post.title, class: 'rounded-bold' unless post.title.blank? %>
 
-      <%= tag.div class: post.title.blank? ? 'card-text' : 'card-text text-secondary' do %>
+      <div class="text-secondary">
         <%= markdown(post.body) %>
-      <% end %>
+      </div>
 
       <%= link_to '', post, class: 'stretched-link' %>
     </div>

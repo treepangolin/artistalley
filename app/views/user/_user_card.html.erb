@@ -7,7 +7,7 @@
         <% if @user.avatar.attached? %>
           <%= image_tag @user.avatar.variant(resize_to_limit: [256, 256]), class: 'rounded-circle profile-avatar w-100' %>
         <% else %>
-          <i class="fas fa-question no-avatar__large card-img-top"></i>
+          <i class="fas fa-paw no-avatar__large card-img-top"></i>
         <% end %>
       </div>
       <!-- End avatar -->
@@ -15,6 +15,11 @@
       <!-- Username & details -->
       <div class="col-8 col-sm-6 col-md-12">
         <h4 class="card-title"><%= @user.username %></h4>
+
+        <h6 class="card-subtitle text-muted mb-2">
+          <i class="fas fa-calendar-day me-2"></i>Since <%= @user.created_at.strftime("#{@user.created_at.day.ordinalize} of %B, %Y") %>
+        </h6>
+
         <% unless @user.location.blank? %>
           <h6 class="card-subtitle text-muted mb-2">
             <i class="fas fa-map-marker-alt me-2"></i><%= @user.location %>

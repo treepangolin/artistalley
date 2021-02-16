@@ -14,6 +14,9 @@
     <%= form.label :body, 'New Comment', class: 'text-white' %>
   </div>
 
-  <%= form.submit class: 'btn btn-primary my-3' %>
+  <%= form.button :submit, class: 'btn btn-primary my-3' do %>
+    <i class="far fa-comment"></i> Post
+  <% end %>
+
   <%= link_to 'Cancel', comment, class: 'btn btn-secondary mt-3' if form.object.persisted? %>
 <% end %>

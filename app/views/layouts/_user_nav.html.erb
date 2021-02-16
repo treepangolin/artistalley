@@ -9,7 +9,7 @@
         <% if current_user.avatar.attached? %>
           <%= image_tag current_user.avatar.variant(resize_to_limit: [128, 128]), height: 32, width: 32, class: 'rounded-circle' %>
         <% else %>
-          <i class="fas fa-question no-avatar__small"></i>
+          <i class="fas fa-paw no-avatar__small"></i>
         <% end %>
       <% else %>
         <i class="fas fa-sign-in-alt"></i>
@@ -45,6 +45,7 @@
         </li>
       <% else %>
         <li><%= link_to 'Sign in', new_user_session_path, class: 'dropdown-item' %></li>
+        <li><%= link_to 'Create account', new_user_registration_path, class: 'dropdown-item' %></li>
       <% end %>
     </ul>
   </li>
