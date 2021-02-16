@@ -18,6 +18,10 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
   def create
     # Attach current user to the post being created
     # Requires before_action above, else Rails will complain about current_user being nil
@@ -30,6 +34,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      render :edit
+    end
+  end
+  
   private
   
   def post_params

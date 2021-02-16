@@ -38,12 +38,12 @@
     <% if user_signed_in? && !comment.deleted? %>
       <div class="card-footer d-flex justify-content-start align-items-center">
         <%= link_to '#', data: { action: 'click->replies#toggle' }, class: 'text-decoration-none link-secondary me-2' do %>
-          <i class="fas fa-reply"></i>&nbsp;Reply
+          <i class="fas fa-reply"></i> Reply
         <% end %>
 
         <% if comment.user == current_user %>
           <%= link_to [comment.commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none link-secondary' do %>
-            <i class="fas fa-trash"></i>&nbsp;Delete
+            <i class="fas fa-trash"></i> Delete
           <% end %>
         <% end %>
       </div>

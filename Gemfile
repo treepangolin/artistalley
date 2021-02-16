@@ -31,6 +31,8 @@ gem 'hotwire-rails', '~> 0.1.3'
 
 gem 'kaminari', '~> 1.2.0'
 
+gem 'redcarpet', '~> 3.5.1'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

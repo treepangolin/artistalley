@@ -33,23 +33,23 @@
       </div>
 
       <% unless @post.body.empty? %>
-        <div class="card-body">
-          <div class="row align-items-center">
-            <% if @post.image.attached? %>
-              <div class="col-sm-2 text-center">
-                <h5 class="m-0"><i class="fas fa-quote-left text-muted"></i></h5>
-              </div>
-            <% end %>
+        <div class="card-body markdown-body">
+          <%= markdown(@post.body) %>
+        </div>
+      <% end %>
 
-            <div class="<%= @post.image.attached? ? 'col-sm-10' : 'card-text' %>"><%= @post.body %></div>
-          </div>
+      <% if @post.user == current_user %>
+        <div class="card-footer">
+          <%= link_to edit_post_path(@post), class: 'text-decoration-none link-secondary' do %>
+            <i class="fas fa-edit"></i> Edit
+          <% end %>
         </div>
       <% end %>
     </div>
 
     <div class="row d-flex justify-content-center" id="comments">
       <% unless @post.comments.empty? && !user_signed_in? %>
-        <h5 class="mt-5">Comments</h5>
+        <h5 class="mt-4">Comments</h5>
       <% end %>
 
       <%= render partial: 'comments/form', locals: { commentable: @post } if user_signed_in? %>

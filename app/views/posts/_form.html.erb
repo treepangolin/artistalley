@@ -1,0 +1,26 @@
+<%= form_with model: @post do |form| %>
+  <div class="form-floating">
+    <%= form.text_field :title, autocomplete: 'title', class: 'form-control bg-dark border-dark text-white', placeholder: 'Title' %>
+    <%= form.label :title, 'Title' %>
+  </div>
+
+  <div class="form-floating my-3">
+    <%= form.text_area :body, class: 'form-control bg-dark border-dark text-white', placeholder: 'Body', style: 'height: 10rem' %>
+    <%= form.label :body %>
+  </div>
+
+  <% unless @post.persisted? %>
+    <div class="mb-3">
+      <%= form.label :image, class: 'form-label' %>
+        <%= form.file_field :image, class: 'form-control bg-dark border-dark text-white' %>
+    </div>
+  <% end %>
+
+  <div class="btn-group" role="group" aria-label="Form controls">
+    <%= link_to @post, class: 'btn btn-secondary' do %>
+      <i class="fas fa-long-arrow-alt-left"></i> Back
+    <% end if @post.persisted? %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -14,6 +14,12 @@ h1, .navbar-brand, .rounded-bold {
   font-weight: 700;
 }
 
+.markdown-body {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', $font-family-sans-serif;
+  }
+}
+
 .turbo-progress-bar {
   background-color: $primary;
 }

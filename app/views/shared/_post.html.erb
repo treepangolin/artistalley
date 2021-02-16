@@ -6,15 +6,15 @@
 
 <% unless post.image.attached? || post.body.empty? %>
   <div class="card bg-dark rounded-3 m-1 border-0 journal-card">
-    <div class="card-body text-fade overflow-hidden">
+    <div class="card-body text-fade overflow-hidden markdown-body">
       <h2 class="card-title text-muted float-end ms-3">
         <i class="far fa-file-alt"></i>
       </h2>
 
       <%= tag.h5 post.title, class: 'rounded-bold' unless post.title.blank? %>
 
-      <%= tag.p class: post.title.blank? ? 'card-text' : 'card-text text-secondary' do %>
-        <%= post.body %>
+      <%= tag.div class: post.title.blank? ? 'card-text' : 'card-text text-secondary' do %>
+        <%= markdown(post.body) %>
       <% end %>
 
       <%= link_to '', post, class: 'stretched-link' %>
