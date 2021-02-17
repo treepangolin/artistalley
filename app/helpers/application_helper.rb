@@ -5,6 +5,6 @@ module ApplicationHelper
   end
 
   def markdown(content)
-    Kramdown::Document.new(sanitize content, tags: %w()).to_html.html_safe
+    Kramdown::Document.new(sanitize(content, tags: %w[])).to_html.html_safe
   end
 end

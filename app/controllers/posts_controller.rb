@@ -1,17 +1,17 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :index] # Require authentication to [create, edit] posts
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[show index] # Require authentication to [create, edit] posts
 
   def index
     @posts = Post.all
   end
 
   def show
-    if params[:comment]
-      @comments = @post.comments.where(id: params[:comment])
-    else
-      @comments = @post.comments.where(parent_id: nil).page(params[:page]).per(5)
-    end
+    @comments = if params[:comment]
+                  @post.comments.where(id: params[:comment])
+                else
+                  @post.comments.where(parent_id: nil).page(params[:page]).per(5)
+                end
   end
 
   def new
@@ -43,9 +43,9 @@ class PostsController < ApplicationController
       render :edit
     end
   end
-  
+
   private
-  
+
   def post_params
     params.require(:post).permit(:title, :body, :image)
   end
