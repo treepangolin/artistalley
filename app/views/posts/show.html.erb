@@ -70,7 +70,7 @@
 
   <% if @post.image.attached? %>
     <div class="lightbox d-none position-fixed" data-lightbox-target="lightbox" data-action="click->lightbox#toggle">
-      <%= image_tag @post.image.variant(resize: '80%'), class: 'rounded img-fluid position-absolute' if @post.image.attached? %>
+      <%= image_tag @post.image.variant(resize: '80%'), class: 'rounded img-fluid position-absolute', data: { action: 'keyup@window->lightbox#close' } if @post.image.attached? %>
     </div>
   <% end %>
 </div>
