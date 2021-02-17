@@ -7,11 +7,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = if params[:comment]
-                  @post.comments.where(id: params[:comment])
-                else
-                  @post.comments.where(parent_id: nil).page(params[:page]).per(5)
-                end
+    @comments = params[:comment] ? @post.comments.where(id: params[:comment]) : @post.comments.where(parent_id: nil)
+    @liked = Like.where(user_id: current_user.id, post_id: params[:id]).any? if user_signed_in?
   end
 
   def new
