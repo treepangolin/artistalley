@@ -1,78 +1,9 @@
 <div class="row justify-content-center" data-controller="lightbox">
-  <% if @post.image.attached? %>
-    <div class="col-lg-8 mb-3">
-      <%= link_to '#', data: { action: 'click->lightbox#toggle' } do %>
-        <%= image_tag @post.image.variant(resize_to_limit: [1000, 1000], quality: 100), class: 'rounded img-fluid' if @post.image.attached? %>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render 'post_image' %>
 
   <%= tag.div class: @post.image.attached? ? 'col-lg-4' : 'col-lg-8' do %>
     <%= tag.h1 @post.title unless @post.title.blank? %>
-
-    <div class="card bg-dark">
-      <div class="card-header position-relative">
-        <div class="d-flex align-items-center">
-          <%= link_to @post.user, class: 'stretched-link' do %>
-            <%= image_tag @post.user.avatar.variant(resize_to_limit: [48, 48]), class: 'rounded-circle me-3' if @post.user.avatar.attached? %>
-          <% end %>
-
-          <div>
-            <h6 class="card-title"><%= @post.user.username %></h6>
-
-            <h6 class="card-subtitle text-muted">
-              <%# If post was created less than 7 days ago, then display relative time; otherwise, timestamp %>
-              <% if @post.created_at < 7.days.ago %>
-                <%= @post.created_at.strftime("#{@post.created_at.day.ordinalize} of %B, %Y") %>
-              <% else %>
-                <%= time_ago_in_words(@post.created_at) + ' ago' %>
-              <% end %>
-            </h6>
-          </div>
-        </div>
-      </div>
-
-      <% unless @post.body.empty? %>
-        <div class="card-body markdown-body">
-          <%= markdown(@post.body) %>
-        </div>
-      <% end %>
-
-      <% if user_signed_in? %>
-        <div class="card-footer">
-          <%= link_to post_likes_path(@post), method: :post, class: @liked ? 'text-decoration-none me-2' : 'text-decoration-none link-secondary me-2' do %>
-            <i class="fas fa-heart"></i> <%= @post.likes.empty? ? 'Like' : @post.likes.count %>
-          <% end %>
-
-          <%= link_to edit_post_path(@post), class: 'text-decoration-none link-secondary' do %>
-            <i class="fas fa-edit"></i> Edit
-          <% end if @post.user == current_user %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="row d-flex justify-content-center" id="comments">
-      <% unless @post.comments.empty? && !user_signed_in? %>
-        <h5 class="mt-4">Comments</h5>
-      <% end %>
-
-      <%= render partial: 'comments/form', locals: { commentable: @post } if user_signed_in? %>
-
-      <% if params[:comment] %>
-        <div class="mb-1">
-          <small class="text-muted">
-            Viewing a single thread.
-            <%= link_to 'See all comments...', url_for(), class: 'text-decoration-none' %>
-          </small>
-        </div>
-      <% end %>
-      <%= render @comments, continue_thread: 4 %>
-    </div>
-  <% end %>
-
-  <% if @post.image.attached? %>
-    <div class="lightbox d-none position-fixed" data-lightbox-target="lightbox" data-action="click->lightbox#toggle">
-      <%= image_tag @post.image.variant(resize: '80%'), class: 'rounded img-fluid position-absolute', data: { action: 'keyup@window->lightbox#close' } if @post.image.attached? %>
-    </div>
+    <%= render 'post_details' %>
+    <%= render 'post_comments' %>
   <% end %>
 </div>

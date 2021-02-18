@@ -1,0 +1,16 @@
+<% content_for :content do %>
+  <div class="row">
+    <%= render 'user_card' %>
+
+    <!-- Profile content -->
+    <div class="col-xl-9 col-md-8 col-sm-12">
+      <%= yield %>
+    </div>
+    <!-- End profile content -->
+
+    <%# Include Edit Profile modal if user can edit this profile %>
+    <%= render 'edit_profile_modal' if @user == current_user %>
+  </div>
+<% end %>
+
+<%= render template: 'layouts/application' %>

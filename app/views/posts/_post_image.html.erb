@@ -1,0 +1,11 @@
+<% if @post.image.attached? %>
+  <div class="col-lg-8 mb-3">
+    <%= link_to '#', data: { action: 'click->lightbox#toggle' } do %>
+      <%= image_tag @post.image.variant(resize_to_limit: [1000, 1000], quality: 100), class: 'rounded img-fluid' if @post.image.attached? %>
+    <% end %>
+  </div>
+
+  <div class="lightbox d-none position-fixed" data-lightbox-target="lightbox" data-action="click->lightbox#toggle">
+    <%= image_tag @post.image.variant(resize: '80%'), class: 'rounded img-fluid position-absolute', data: { action: 'keyup@window->lightbox#close' } if @post.image.attached? %>
+  </div>
+<% end %>

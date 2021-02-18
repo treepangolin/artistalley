@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center flex-wrap <%= 'h-75' if posts.empty? %>">
+  <% if posts.any? %>
+    <%= render partial: 'shared/post', collection: posts %>
+  <% else %>
+    <div class="align-self-center">
+      <h1 class="text-muted">
+        <i class="fas fa-wind"></i> <i class="fas fa-leaf"></i>
+      </h1>
+    </div>
+  <% end %>
+</div>

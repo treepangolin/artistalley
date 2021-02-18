@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   has_many :posts
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
 
   # Allow user to sign in with either email or username
   attr_writer :login
@@ -36,7 +38,7 @@ class User < ApplicationRecord
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
+    if (login = conditions.delete(:login))
       where(conditions).where(['lower(username) = :value OR lower(email) = :value', { value: login.downcase }]).first
     elsif conditions[:username].nil?
       where(conditions).first

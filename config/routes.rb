@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     resources :likes
   end
 
-  resources :user, only: [:show]
+  get '/user/:id', to: 'user#show', as: 'user'
+  get '/user/:id/likes', to: 'user#likes', as: 'user_likes'
 
   root 'home#index'
 
