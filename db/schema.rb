@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(version: 2021_02_17_060057) do
     t.bigint "user_id", null: false
     t.string "commentable_type", null: false
     t.bigint "commentable_id", null: false
+    t.boolean "deleted", default: false
     t.integer "parent_id"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "deleted", default: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -66,11 +66,11 @@ ActiveRecord::Schema.define(version: 2021_02_17_060057) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.string "title"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
