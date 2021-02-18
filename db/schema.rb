@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_02_17_060057) do
     t.string "commentable_type", null: false
     t.uuid "commentable_id", null: false
     t.boolean "deleted", default: false
-    t.integer "parent_id"
+    t.uuid "parent_id"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
