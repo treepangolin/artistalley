@@ -14,7 +14,7 @@
       <div class="card-header position-relative">
         <div class="d-flex align-items-center">
           <%= link_to @post.user, class: 'stretched-link' do %>
-            <%= image_tag @post.user.avatar.variant(resize_to_limit: [48, 48]), class: 'rounded-circle me-3' %>
+            <%= image_tag @post.user.avatar.variant(resize_to_limit: [48, 48]), class: 'rounded-circle me-3' if @post.user.avatar.attached? %>
           <% end %>
 
           <div>
