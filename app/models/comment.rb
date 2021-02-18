@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
   end
 
   def destroy
-    if parent_id.nil? && comments.empty?
+    if (parent_id.nil? && comments.empty?) || (!parent_id.nil? && comments.empty?)
       super
     else
       update(deleted: true)
