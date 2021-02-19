@@ -15,7 +15,7 @@
         <i class="fas fa-sign-in-alt"></i>
       <% end %>
     </a>
-    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarUserDropdownLink">
+    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarUserDropdownLink">
       <% if user_signed_in? %>
         <li>
           <h6 class="dropdown-header">Hi, <%= current_user.username %>!</h6>
