@@ -1,7 +1,7 @@
 <% if @post.image %>
-  <div class="col-lg-8 mb-3">
+  <div class="mb-3 col-auto">
     <%= link_to '#', data: { action: 'click->lightbox#toggle' } do %>
-      <%= image_tag @post.image(:large).url, class: 'rounded img-fluid' if @post.image %>
+      <%= image_tag @post.image(:medium_large).url, class: 'rounded img-fluid' if @post.image %>
     <% end %>
   </div>
 

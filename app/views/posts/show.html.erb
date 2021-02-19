@@ -1,7 +1,7 @@
 <div class="row justify-content-center" data-controller="lightbox">
   <%= render 'post_image' %>
 
-  <%= tag.div class: @post.image ? 'col-lg-4' : 'col-lg-8' do %>
+  <%= tag.div class: @post.image ? 'col-sm-6 col-md-8 col-xl-auto flex-sm-grow-1 flex-lg-grow-0' : 'col-lg-8' do %>
     <%= tag.h1 @post.title unless @post.title.blank? %>
     <%= render 'post_details' %>
     <%= render 'post_comments' %>

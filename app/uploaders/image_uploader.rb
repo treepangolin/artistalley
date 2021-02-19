@@ -10,6 +10,7 @@ class ImageUploader < Shrine
     {
       small: vips.resize_to_limit!(256, 256),
       medium: vips.resize_to_limit!(512, 512),
+      medium_large: vips.resize_to_limit!(896, 896),
       large: vips.resize_to_limit!(1024, 1024)
     }
   end
