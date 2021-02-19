@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  has_one_attached :image
+  include ImageUploader::Attachment(:image)
 
   has_many :comments, as: :commentable
   has_many :likes, dependent: :destroy

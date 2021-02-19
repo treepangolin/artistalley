@@ -12,7 +12,8 @@
   <% unless @post.persisted? %>
     <div class="mb-3">
       <%= form.label :image, class: 'form-label' %>
-        <%= form.file_field :image, class: 'form-control bg-dark border-dark text-white' %>
+      <%= form.hidden_field :image, value: @post.cached_image_data %>
+      <%= form.file_field :image, class: 'form-control bg-dark border-dark text-white' %>
     </div>
   <% end %>
 

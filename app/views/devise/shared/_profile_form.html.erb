@@ -13,7 +13,8 @@
 
   <h2 class="mt-2">Avatar</h2>
 
-  <%= form.file_field :avatar, class: 'form-control bg-dark border-dark text-white' %>
+  <%= form.hidden_field :avatar, value: resource.cached_avatar_data %>
+  <%= form.file_field :avatar, accept: 'image/png,image/jpeg,image/gif,image/tiff,image/webp', class: 'form-control bg-dark border-dark text-white' %>
 
   <%= render 'devise/shared/submit_edit', form: form %>
 <% end %>

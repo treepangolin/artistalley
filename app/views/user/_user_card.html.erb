@@ -4,8 +4,8 @@
     <div class="card-body row justify-content-center align-items-center">
       <!-- Avatar -->
       <div class="col-4 col-sm-4 col-md-12">
-        <% if @user.avatar.attached? %>
-          <%= image_tag @user.avatar.variant(resize_to_limit: [256, 256]), class: 'rounded-circle profile-avatar w-100' %>
+        <% if @user.avatar %>
+          <%= image_tag @user.avatar(:small).url, class: 'rounded-circle profile-avatar w-100' %>
         <% else %>
           <i class="fas fa-paw no-avatar__large card-img-top"></i>
         <% end %>

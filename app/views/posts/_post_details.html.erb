@@ -1,9 +1,9 @@
 <div class="card bg-dark">
   <div class="card-header position-relative">
     <div class="d-flex align-items-center">
-      <% if @post.user.avatar.attached? %>
+      <% if @post.user.avatar %>
         <%= link_to @post.user, class: 'stretched-link' do %>
-          <%= image_tag @post.user.avatar.variant(resize_to_limit: [48, 48]), class: 'rounded-circle me-3' %>
+          <%= image_tag @post.user.avatar(:small).url, width: 48, height: 48, class: 'rounded-circle me-3' %>
         <% end %>
       <% else %>
         <i class="fas fa-paw no-avatar__small me-3"></i>

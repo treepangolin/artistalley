@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params.merge(user_id: current_user.id))
 
     if @post.save
-      redirect_to action: 'index'
+      redirect_to @post
     else
       render :new
     end

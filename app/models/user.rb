@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # Roles
   enum role: %i[default admin]
 
-  has_one_attached :avatar
+  include ImageUploader::Attachment(:avatar)
 
   has_many :posts
   has_many :likes
