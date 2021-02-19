@@ -3,9 +3,13 @@ class UserController < ApplicationController
   # Independent from Devise
   before_action :set_user
 
-  def show; end
+  def show
+    @header = 'Wall'
+  end
 
-  def likes; end
+  def likes
+    @header = 'Likes'
+  end
 
   private
 

@@ -4,6 +4,17 @@
 
     <!-- Profile content -->
     <div class="col-xl-9 col-md-8 col-sm-12">
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle dropdown-h1 text-decoration-none link-light" id="headerNavDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <h1 class="d-inline"><%= @header %></h1>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="headerNavDropdown">
+          <li><%= link_to 'Wall', user_path(@user), class: "dropdown-item #{nav_active(user_path(@user))}" %></li>
+          <li><%= link_to 'Liked Posts', user_likes_path(@user), class: "dropdown-item #{nav_active(user_likes_path(@user))}" %></li>
+        </ul>
+      </div>
+
       <%= yield %>
     </div>
     <!-- End profile content -->
