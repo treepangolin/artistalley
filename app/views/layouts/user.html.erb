@@ -1,10 +1,14 @@
 <% content_for :content do %>
   <div class="row">
-    <%= render 'user_card' %>
+    <!-- User card (username, bio, details) -->
+    <div class="col-12 col-md-5 col-lg-4 col-xl-3 mb-2">
+      <%= render 'user_card' %>
+    </div>
+    <!-- End user card -->
 
     <!-- Profile content -->
-    <div class="col-xl-9 col-md-8 col-sm-12">
-      <div class="dropdown">
+    <div class="col-12 col-md-7 col-lg-8 col-xl-9">
+      <div class="dropdown text-center text-sm-start">
         <a href="#" class="dropdown-toggle dropdown-h1 text-decoration-none link-light" id="headerNavDropdown" data-bs-toggle="dropdown" aria-expanded="false">
           <h1 class="d-inline"><%= @header %></h1>
         </a>

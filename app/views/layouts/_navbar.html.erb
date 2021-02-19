@@ -13,17 +13,11 @@
             aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!--
-      <ul class="navbar-nav nav-pills me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><%= link_to 'Posts', posts_path, class: nav_active('posts') %></li>
-      </ul>
-      -->
-
-      <ul class="navbar-nav me-2 ms-auto">
+    <div class="collapse navbar-collapse pt-2 pt-lg-0" id="navbarSupportedContent">
+      <ul class="navbar-nav me-lg-2 ms-auto">
         <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to new_post_path, class: 'btn btn-outline-primary rounded-circle' do %>
+          <li class="nav-item d-grid gap-2">
+            <%= link_to new_post_path, class: 'btn btn-outline-primary rounded-pill' do %>
               <i class="fas fa-plus"></i>
             <% end %>
           </li>

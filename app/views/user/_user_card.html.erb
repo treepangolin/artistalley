@@ -1,52 +1,49 @@
-<!-- User card (username, bio, details) -->
-<div class="col-xl-3 col-md-4 col-sm-12">
-  <div class="card bg-dark text-center">
-    <div class="card-body row justify-content-center align-items-center">
-      <!-- Avatar -->
-      <div class="col-4 col-sm-4 col-md-12">
-        <% if @user.avatar %>
-          <%= image_tag @user.avatar(:small).url, class: 'rounded-circle profile-avatar w-100' %>
-        <% else %>
-          <i class="fas fa-paw no-avatar__large card-img-top"></i>
-        <% end %>
-      </div>
-      <!-- End avatar -->
 
-      <!-- Username & details -->
-      <div class="col-8 col-sm-6 col-md-12">
-        <h4 class="card-title"><%= @user.username %></h4>
-
-        <h6 class="card-subtitle text-muted mb-2">
-          <i class="fas fa-calendar-day me-2"></i>Member since <%= @user.created_at.strftime('%B %Y') %>
-          <% unless @user.location.blank? %>
-            <br>
-            <small class="text-muted mb-2">
-              <i class="fas fa-map-marker-alt me-2"></i><%= @user.location %>
-            </small>
-          <% end %>
-        </h6>
-
-        <% if @user.bio.blank? %>
-          <% if @user == current_user %>
-            <p class="card-text text-muted">Your bio is empty... Maybe tell everyone a little about yourself?</p>
-          <% end %>
-        <% else %>
-          <p class="card-text"><%= @user.bio %></p>
-        <% end %>
-      </div>
-      <!-- End details -->
+<div class="card bg-dark text-center">
+  <div class="card-body row justify-content-center align-items-center">
+    <!-- Avatar -->
+    <div class="col-4 col-md-12">
+      <% if @user.avatar %>
+        <%= image_tag @user.avatar(:small).url, class: 'rounded-circle profile-avatar w-100' %>
+      <% else %>
+        <i class="fas fa-paw no-avatar__large card-img-top"></i>
+      <% end %>
     </div>
+    <!-- End avatar -->
 
-    <!-- Button to edit bio if this is current_user's profile -->
-    <%# Include Edit Profile modal if user can edit this profile %>
-    <% if @user == current_user %>
-      <div class="card-footer">
-        <%= link_to '#', class: 'btn btn-outline-primary rounded-pill', data: { 'bs-toggle': 'modal', 'bs-target': '#editProfileModal' } do %>
-          <i class="fas fa-edit"></i>&nbsp;Edit
+    <!-- Username & details -->
+    <div class="col-8 col-sm-6 col-md-12">
+      <h4 class="card-title"><%= @user.username %></h4>
+
+      <h6 class="card-subtitle text-muted mb-2">
+        <i class="fas fa-calendar-day me-2"></i>Joined <%= @user.created_at.strftime('%B %Y') %>
+        <% unless @user.location.blank? %>
+          <br>
+          <small class="text-muted mb-2">
+            <i class="fas fa-map-marker-alt me-2"></i><%= @user.location %>
+          </small>
         <% end %>
-      </div>
-    <% end %>
-    <!-- End button -->
+      </h6>
+
+      <% if @user.bio.blank? %>
+        <% if @user == current_user %>
+          <p class="card-text text-muted">Your bio is empty... Maybe tell everyone a little about yourself?</p>
+        <% end %>
+      <% else %>
+        <p class="card-text"><%= @user.bio %></p>
+      <% end %>
+    </div>
+    <!-- End details -->
   </div>
+
+  <!-- Button to edit bio if this is current_user's profile -->
+  <%# Include Edit Profile modal if user can edit this profile %>
+  <% if @user == current_user %>
+    <div class="card-footer">
+      <%= link_to '#', class: 'btn btn-outline-primary rounded-pill', data: { 'bs-toggle': 'modal', 'bs-target': '#editProfileModal' } do %>
+        <i class="fas fa-edit"></i>&nbsp;Edit
+      <% end %>
+    </div>
+  <% end %>
+  <!-- End button -->
 </div>
-<!-- End user card -->
