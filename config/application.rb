@@ -22,9 +22,5 @@ module ArtistAlley
     config.action_view.field_error_proc = proc do |html_tag, _instance|
       html_tag.gsub('form-control', 'form-control is-invalid').html_safe
     end
-
-    config.generators do |g|
-      g.orm :active_record, primary_key_type: :uuid
-    end
   end
 end
