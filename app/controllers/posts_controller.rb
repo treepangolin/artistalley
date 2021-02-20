@@ -15,9 +15,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
+  def edit; end
 
   def create
     # Attach current user to the post being created
@@ -32,8 +30,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
-
     if @post.update(post_params)
       redirect_to @post
     else
@@ -58,6 +54,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 end
