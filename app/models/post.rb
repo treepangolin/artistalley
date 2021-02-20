@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   friendly_id :slug, use: :slugged
 
   has_many :comments, as: :commentable
-  has_many :likes, dependent: :destroy
+  acts_as_votable
 
   belongs_to :user
 

@@ -34,8 +34,8 @@
 
   <% if user_signed_in? %>
     <div class="card-footer">
-      <%= link_to post_likes_path(@post), method: :post, class: @liked ? 'me-2' : 'link-secondary me-2' do %>
-        <i class="fas fa-heart"></i> <%= @post.likes.empty? ? 'Like' : @post.likes.count %>
+      <%= link_to like_post_path(@post, current_user.liked?(@post) ? 'unlike' : 'like'), method: :put, class: current_user.liked?(@post) ? 'me-2' : 'link-secondary me-2' do %>
+        <i class="fas fa-heart"></i> <%= @post.get_likes.empty? ? 'Like' : @post.get_likes.size %>
       <% end %>
 
       <% if @post.user == current_user %>
@@ -47,6 +47,10 @@
           <i class="fas fa-trash"></i> Delete
         <% end %>
       <% end %>
+    </div>
+  <% else %>
+    <div class="card-footer">
+      <i class="fas fa-heart"></i> <%= @post.get_likes.size %>
     </div>
   <% end %>
 </div>

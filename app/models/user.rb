@@ -10,8 +10,7 @@ class User < ApplicationRecord
   include ImageUploader::Attachment(:avatar)
 
   has_many :posts
-  has_many :likes
-  has_many :liked_posts, through: :likes, source: :post
+  acts_as_voter
 
   # Allow user to sign in with either email or username
   attr_writer :login

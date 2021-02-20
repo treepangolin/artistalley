@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy like]
   before_action :authenticate_user!, except: %i[show index] # Require authentication to [create, edit] posts
 
   def index
@@ -8,7 +8,6 @@ class PostsController < ApplicationController
 
   def show
     @comments = params[:comment] ? @post.comments.where(id: params[:comment]) : @post.comments.where(parent_id: nil)
-    @liked = Like.where(user_id: current_user.id, post_id: params[:id]).any? if user_signed_in?
   end
 
   def new
@@ -45,6 +44,17 @@ class PostsController < ApplicationController
     end
 
     redirect_to user_path(current_user)
+  end
+
+  def like
+    case params[:format]
+    when 'like'
+      @post.liked_by current_user
+    when 'unlike'
+      @post.unliked_by current_user
+    end
+
+    redirect_to @post
   end
 
   private

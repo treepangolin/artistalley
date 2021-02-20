@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :posts do
     resources :comments, module: :posts
-    resources :likes
+    member do
+      put 'like', to: 'posts#like'
+    end
   end
 
   get '/user/:id', to: 'user#show', as: 'user'
