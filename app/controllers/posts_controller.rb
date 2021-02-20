@@ -37,8 +37,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-
     if @post.user == current_user
       @post.destroy
     end
