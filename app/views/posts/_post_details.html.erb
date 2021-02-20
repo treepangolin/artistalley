@@ -32,16 +32,16 @@
 
   <% if user_signed_in? %>
     <div class="card-footer">
-      <%= link_to post_likes_path(@post), method: :post, class: @liked ? 'text-decoration-none me-2' : 'text-decoration-none link-secondary me-2' do %>
+      <%= link_to post_likes_path(@post), method: :post, class: @liked ? 'me-2' : 'link-secondary me-2' do %>
         <i class="fas fa-heart"></i> <%= @post.likes.empty? ? 'Like' : @post.likes.count %>
       <% end %>
 
       <% if @post.user == current_user %>
-        <%= link_to edit_post_path(@post), class: 'text-decoration-none link-secondary me-2' do %>
+        <%= link_to edit_post_path(@post), class: 'link-secondary me-2' do %>
           <i class="fas fa-edit"></i> Edit
         <% end %>
 
-        <%= link_to post_path(@post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none link-secondary' do %>
+        <%= link_to post_path(@post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-secondary' do %>
           <i class="fas fa-trash"></i> Delete
         <% end %>
       <% end %>

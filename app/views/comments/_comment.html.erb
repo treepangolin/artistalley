@@ -17,12 +17,12 @@
           <% if comment.deleted? %>
             <span class="text-muted">deleted</span>
           <% else %>
-            <%= link_to comment.user.username, comment.user, class: 'text-decoration-none' %>
+            <%= link_to comment.user.username, comment.user %>
           <% end %>
         </small>
       </div>
 
-      <%= link_to url_for(comment: comment.id, anchor: dom_id(comment)), class: 'text-decoration-none link-secondary' do %>
+      <%= link_to url_for(comment: comment.id, anchor: dom_id(comment)), class: 'link-secondary' do %>
         <small>
           <% if comment.created_at < 7.days.ago %>
             <%= comment.created_at.strftime("#{comment.created_at.day.ordinalize} of %B, %Y") %>
@@ -41,12 +41,12 @@
 
     <% if user_signed_in? && !comment.deleted? %>
       <div class="card-footer d-flex justify-content-start align-items-center">
-        <%= link_to '#', data: { action: 'click->replies#toggle' }, class: 'text-decoration-none link-secondary me-2' do %>
+        <%= link_to '#', data: { action: 'click->replies#toggle' }, class: 'link-secondary me-2' do %>
           <i class="fas fa-reply"></i> Reply
         <% end %>
 
         <% if comment.user == current_user %>
-          <%= link_to [comment.commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none link-secondary' do %>
+          <%= link_to [comment.commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-secondary' do %>
             <i class="fas fa-trash"></i> Delete
           <% end %>
         <% end %>

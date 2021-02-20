@@ -9,6 +9,10 @@ body {
   font-family: 'Inter', $font-family-sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 h1, .navbar-brand, .rounded-bold {
   font-family: 'Poppins', $font-family-sans-serif;
   font-weight: 700;
