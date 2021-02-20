@@ -22,11 +22,14 @@ document.addEventListener("turbo:load", () => {
     return new Toast(toastEl)
   })
 
-  // Select all links in the markdown area to make them target: _blank
-  var links = Array.from(document.getElementById("markdown-area").getElementsByTagName("a"))
+  // Make all markdown-parsed links open in a new tab
+  if (document.getElementById("markdown-area") !== null) {
+    Array.from(
+      document.getElementById("markdown-area").getElementsByTagName("a")
+      ).forEach(link => link.target = "_blank")
+  }
 
   toastList.forEach(toast => toast.show())
-  links.forEach(link => link.target = "_blank");
 })
 
 // import Stimulus controllers
