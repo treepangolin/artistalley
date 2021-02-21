@@ -15,21 +15,17 @@ class UserController < ApplicationController
     if current_user.following?(@user)
       current_user.unfollow(@user)
 
-      flash[:message] = "Stopped following #{@user.username}"
-      redirect_to @user
+      redirect_to @user, secondary: "Stopped following #{@user.username}"
     else
-      new_follow = current_user.active_follows.new(followed_id: @user.id)
+      new_follow = current_user.follow(@user)
 
-      if new_follow.save
-        flash[:message] = "Now following #{@user.username}"
-        redirect_to @user
-      end
+      redirect_to @user, notice: "Now following #{@user.username}" if new_follow.save
     end
   end
 
   private
 
   def set_user
-    @user = User.find_by_username!(params[:id])
+    @user = User.find_by_username(params[:id])
   end
 end

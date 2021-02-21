@@ -21,7 +21,7 @@
     
     <div class="toast-container p-4 top-0 start-50 translate-middle-x position-absolute">
       <% flash.each do |type, message| %>
-        <div class="toast align-items-center text-white border-0 <%= type == 'alert' ? 'bg-danger' : 'bg-primary' %>" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast align-items-center text-white border-0 bg-<%= type %>" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="d-flex">
             <div class="toast-body">
               <%= message %>

@@ -32,6 +32,14 @@ a.dropdown-toggle.dropdown-h1:after {
   max-width: 50%;
 }
 
+.bg-notice {
+  background-color: $primary;
+}
+
+.bg-alert {
+  background-color: $danger;
+}
+
 .turbo-progress-bar {
   background-color: $primary;
 }
