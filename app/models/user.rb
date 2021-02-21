@@ -7,6 +7,9 @@ class User < ApplicationRecord
   # Roles
   enum role: %i[default admin]
 
+  # If someone wants to look a username up by URL, make the find method case insensitive at least
+  scope :find_by_username, ->(value) { where('lower(username) = ?', value.downcase).first }
+
   include ImageUploader::Attachment(:avatar)
 
   has_many :posts
@@ -31,6 +34,10 @@ class User < ApplicationRecord
 
   def following?(user)
     followed_users.exists?(user.id)
+  end
+
+  def follow(user)
+    active_follows.new(followed_id: user.id)
   end
 
   def unfollow(user)
