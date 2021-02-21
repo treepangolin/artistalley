@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_234658) do
     t.integer "role"
     t.text "bio"
     t.string "location"
+    t.string "pronouns"
     t.text "avatar_data"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

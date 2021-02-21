@@ -25,6 +25,19 @@
               Optional, and doesn't have to be specific
             </div>
           </div>
+
+          <div class="form-floating mt-3">
+            <%= form.text_field :pronouns, class: 'form-control bg-dark border-secondary text-white', placeholder: 'Pronouns' %>
+            <%= form.label :pronouns %>
+            <div class="form-text" id="pronounsHelp">
+              Let people know how you prefer to be called. Common pronouns:
+              <ul>
+                <li>they/them</li>
+                <li>she/her</li>
+                <li>he/him</li>
+              </ul>
+            </div>
+          </div>
         </div>
         <!-- End body -->
 
