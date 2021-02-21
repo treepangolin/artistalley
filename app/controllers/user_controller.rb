@@ -11,6 +11,22 @@ class UserController < ApplicationController
     @header = 'Likes'
   end
 
+  def follow
+    if current_user.following?(@user)
+      current_user.unfollow(@user)
+
+      flash[:message] = "Stopped following #{@user.username}"
+      redirect_to @user
+    else
+      new_follow = current_user.active_follows.new(followed_id: @user.id)
+
+      if new_follow.save
+        flash[:message] = "Now following #{@user.username}"
+        redirect_to @user
+      end
+    end
+  end
+
   private
 
   def set_user

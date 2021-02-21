@@ -15,7 +15,7 @@
 
         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="headerNavDropdown">
           <li><%= link_to 'Wall', user_path(@user), class: "dropdown-item #{nav_active(user_path(@user))}" %></li>
-          <li><%= link_to 'Liked Posts', user_likes_path(@user), class: "dropdown-item #{nav_active(user_likes_path(@user))}" %></li>
+          <li><%= link_to 'Liked Posts', likes_user_path(@user), class: "dropdown-item #{nav_active(likes_user_path(@user))}" %></li>
         </ul>
       </div>
 

@@ -10,6 +10,10 @@ class User < ApplicationRecord
   include ImageUploader::Attachment(:avatar)
 
   has_many :posts
+  has_many :active_follows, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
+  has_many :passive_follows, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy
+  has_many :followed_users, through: :active_follows, source: :followed_user
+  has_many :follower_users, through: :passive_follows, source: :follower_user
   acts_as_voter
 
   # Allow user to sign in with either email or username
@@ -23,6 +27,14 @@ class User < ApplicationRecord
   # Set role to default on account creation
   after_initialize do
     self.role ||= :default if new_record?
+  end
+
+  def following?(user)
+    followed_users.exists?(user.id)
+  end
+
+  def unfollow(user)
+    active_follows.find_by(followed_id: user.id).destroy
   end
 
   # /user/[username] instead of /user/[id]

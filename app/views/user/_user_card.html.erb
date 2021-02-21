@@ -38,11 +38,15 @@
 
   <!-- Button to edit bio if this is current_user's profile -->
   <%# Include Edit Profile modal if user can edit this profile %>
-  <% if @user == current_user %>
+  <% if user_signed_in? %>
     <div class="card-footer">
       <%= link_to '#', class: 'btn btn-outline-primary rounded-pill', data: { 'bs-toggle': 'modal', 'bs-target': '#editProfileModal' } do %>
         <i class="fas fa-edit"></i>&nbsp;Edit
-      <% end %>
+      <% end if @user == current_user %>
+
+      <%= link_to follow_user_path, method: :put, class: "btn #{current_user.following?(@user) ? 'btn-outline-secondary' : 'btn-outline-primary'} rounded-pill" do %>
+        <i class="far fa-eye"></i>&nbsp;<%= current_user.following?(@user) ? 'Unfollow' : 'Follow' %>
+      <% end unless @user == current_user %>
     </div>
   <% end %>
   <!-- End button -->

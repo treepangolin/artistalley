@@ -6,8 +6,12 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/user/:id', to: 'user#show', as: 'user'
-  get '/user/:id/likes', to: 'user#likes', as: 'user_likes'
+  resources :user, only: [:show] do
+    member do
+      get 'likes', to: 'user#likes'
+      put 'follow', to: 'user#follow'
+    end
+  end
 
   root 'home#index'
 
