@@ -5,10 +5,12 @@ class UserController < ApplicationController
 
   def show
     @header = 'Wall'
+    render 'posts', locals: { posts: @user.posts }
   end
 
   def likes
     @header = 'Likes'
+    render 'posts', locals: { posts: @user.find_liked_items }
   end
 
   def follow
