@@ -11,6 +11,7 @@ class User < ApplicationRecord
   scope :find_by_username, ->(value) { where('lower(username) = ?', value.downcase).first }
 
   include ImageUploader::Attachment(:avatar)
+  include Followable
 
   has_many :posts
   has_many :active_follows, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
@@ -30,18 +31,6 @@ class User < ApplicationRecord
   # Set role to default on account creation
   after_initialize do
     self.role ||= :default if new_record?
-  end
-
-  def following?(user)
-    followed_users.exists?(user.id)
-  end
-
-  def follow(user)
-    active_follows.new(followed_id: user.id)
-  end
-
-  def unfollow(user)
-    active_follows.find_by(followed_id: user.id).destroy
   end
 
   # /user/[username] instead of /user/[id]

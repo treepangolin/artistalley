@@ -15,11 +15,11 @@ class UserController < ApplicationController
     if current_user.following?(@user)
       current_user.unfollow(@user)
 
-      redirect_to @user, secondary: "Stopped following #{@user.username}"
+      redirect_to @user, secondary: "Stopped following #{@user.username}."
     else
       new_follow = current_user.follow(@user)
 
-      redirect_to @user, notice: "Now following #{@user.username}" if new_follow.save
+      redirect_to @user, notice: "Now following #{@user.username}!" if new_follow.save
     end
   end
 
