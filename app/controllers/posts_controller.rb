@@ -22,6 +22,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params.merge(user_id: current_user.id))
 
     if @post.save
+      @post.create_activity(key: 'post.create', owner: current_user)
       redirect_to @post
     else
       render :new
@@ -37,9 +38,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @post.user == current_user
-      @post.destroy
-    end
+    @post.destroy if @post.user == current_user
 
     redirect_to user_path(current_user)
   end
@@ -47,8 +46,17 @@ class PostsController < ApplicationController
   def like
     case params[:format]
     when 'like'
+      @post.create_activity(key: 'post.like', owner: current_user)
       @post.liked_by current_user
     when 'unlike'
+      like_activity = PublicActivity::Activity.find_by(
+        trackable_type: 'Post',
+        trackable_id: @post.id,
+        owner_id: current_user.id,
+        key: 'post.like'
+      )
+
+      like_activity&.destroy
       @post.unliked_by current_user
     end
 

@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   add_flash_types :secondary
 
+  include PublicActivity::StoreController
+
   protected
 
   # Configure extra permitted parameters as the Devise User model has added fields

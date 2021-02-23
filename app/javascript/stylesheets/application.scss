@@ -19,7 +19,7 @@ h1, .navbar-brand, .rounded-bold {
 }
 
 a.dropdown-toggle.dropdown-h1:after {
-  vertical-align: 0.6em;
+  vertical-align: 30%;
 }
 
 .markdown-body {
@@ -83,6 +83,14 @@ mark {
     width: 32px;
     height: 32px;
     padding: 8px;
+  }
+
+  &__medium {
+    @include no-avatar;
+    font-size: 24px;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
   }
 
   &__large {

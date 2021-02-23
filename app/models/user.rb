@@ -10,6 +10,10 @@ class User < ApplicationRecord
   # If someone wants to look a username up by URL, make the find method case insensitive at least
   scope :find_by_username, ->(value) { where('lower(username) = ?', value.downcase).first }
 
+  def all_activity
+    PublicActivity::Activity.where(owner: self).or(PublicActivity::Activity.where(owner: followed_users))
+  end
+
   include ImageUploader::Attachment(:avatar)
   include Followable
 
@@ -17,7 +21,7 @@ class User < ApplicationRecord
   has_many :active_follows, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
   has_many :passive_follows, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy
   has_many :followed_users, through: :active_follows, source: :followed_user
-  has_many :follower_users, through: :passive_follows, source: :follower_user
+  has_many :followers, through: :passive_follows, source: :following_user
   acts_as_voter
 
   # Allow user to sign in with either email or username

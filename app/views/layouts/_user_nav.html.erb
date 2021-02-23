@@ -7,7 +7,7 @@
         <% end %>
 
         <% if current_user.avatar %>
-          <%= image_tag current_user.avatar(:small).url, height: 32, width: 32, class: 'rounded-circle' %>
+          <%= image_tag current_user.avatar(:small).url, height: 38, class: 'rounded-circle' %>
         <% else %>
           <i class="fas fa-paw no-avatar__small"></i>
         <% end %>
@@ -19,13 +19,6 @@
       <% if user_signed_in? %>
         <li>
           <h6 class="dropdown-header">Hi, <%= current_user.username %>!</h6>
-        </li>
-
-        <li>
-          <%= link_to user_path(current_user), class: 'dropdown-item' do %>
-            <i class="fas fa-user-circle"></i>
-            &nbsp;Profile
-          <% end %>
         </li>
 
         <li>

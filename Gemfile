@@ -39,6 +39,8 @@ gem 'friendly_id', '~> 5.4'
 
 gem 'acts_as_votable', '~> 0.13.1'
 
+gem 'public_activity', '~> 1.6'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

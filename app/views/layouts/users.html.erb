@@ -8,14 +8,15 @@
 
     <!-- Profile content -->
     <div class="col-12 col-md-7 col-lg-8 col-xl-9">
-      <div class="dropdown text-center text-lg-start">
+      <div class="dropdown text-center text-lg-start mb-2">
         <a href="#" class="dropdown-toggle dropdown-h1 link-light" id="headerNavDropdown" data-bs-toggle="dropdown" aria-expanded="false">
           <h1 class="d-inline"><%= @header %></h1>
         </a>
 
         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="headerNavDropdown">
-          <li><%= link_to 'Wall', user_path(@user), class: "dropdown-item #{nav_active(user_path(@user))}" %></li>
-          <li><%= link_to 'Liked Posts', likes_user_path(@user), class: "dropdown-item #{nav_active(likes_user_path(@user))}" %></li>
+          <li><%= link_to 'All Posts', user_path(@user), class: "dropdown-item #{nav_active(user_path(@user))}" %></li>
+          <li><%= link_to 'Likes', likes_user_path(@user), class: "dropdown-item #{nav_active(likes_user_path(@user))}" %></li>
+          <li><%= link_to 'Followers', followers_user_path(@user), class: "dropdown-item #{nav_active(followers_user_path(@user))}" %></li>
         </ul>
       </div>
 

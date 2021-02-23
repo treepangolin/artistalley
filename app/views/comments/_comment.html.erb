@@ -5,11 +5,11 @@
   <div class="card bg-dark mb-2">
     <div class="card-header d-flex justify-content-between align-items-center">
       <div class="d-flex flex-row align-items-center">
-        <%= link_to comment.user do %>
+        <%= link_to comment.user, class: 'me-2' do %>
           <% if comment.user.avatar %>
-            <%= image_tag comment.user.avatar(:small).url, width: 24, height: 24, class: 'rounded-circle me-2' %>
+            <%= image_tag comment.user.avatar(:small).url, width: 24, height: 24, class: 'rounded-circle' %>
           <% else %>
-            <i class="fas fa-paw no-avatar__xsmall me-2"></i>
+            <i class="fas fa-paw no-avatar__xsmall"></i>
           <% end %>
         <% end unless comment.deleted? %>
 

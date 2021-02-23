@@ -1,15 +1,15 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   # Separate User controller to handle showing user profiles
   # Independent from Devise
   before_action :set_user
+  before_action :set_header
 
   def show
-    @header = 'Wall'
+    @header = 'All Posts'
     render 'posts', locals: { posts: @user.posts }
   end
 
   def likes
-    @header = 'Likes'
     render 'posts', locals: { posts: @user.find_liked_items }
   end
 
@@ -17,17 +17,27 @@ class UserController < ApplicationController
     if current_user.following?(@user)
       current_user.unfollow(@user)
 
-      redirect_to @user, secondary: "Stopped following #{@user.username}."
+      flash[:secondary] = "Stopped following #{@user.username}."
     else
       new_follow = current_user.follow(@user)
 
-      redirect_to @user, notice: "Now following #{@user.username}!" if new_follow.save
+      flash[:notice] = "Now following #{@user.username}!" if new_follow.save
     end
+
+    redirect_back fallback_location: @user
+  end
+
+  def followers
+    render 'follows', locals: { users: @user.followers }
   end
 
   private
 
   def set_user
     @user = User.find_by_username(params[:id])
+  end
+
+  def set_header
+    @header = action_name.capitalize
   end
 end

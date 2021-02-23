@@ -6,14 +6,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user, only: [:show] do
+  resources :users, only: [:show] do
     member do
-      get 'likes', to: 'user#likes'
-      put 'follow', to: 'user#follow'
+      get 'likes', to: 'users#likes'
+      put 'follow', to: 'users#follow'
+      get 'followers', to: 'users#followers'
     end
   end
 
-  root 'home#index'
+  root 'feed#index'
 
   devise_for :users, path: 'auth', controllers: {
     registrations: 'auth/registrations'

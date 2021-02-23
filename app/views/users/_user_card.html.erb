@@ -1,4 +1,3 @@
-
 <div class="card bg-dark text-center">
   <div class="card-body row justify-content-center align-items-center">
     <!-- Avatar -->
@@ -6,7 +5,7 @@
       <% if @user.avatar %>
         <%= image_tag @user.avatar(:small).url, class: 'rounded-circle profile-avatar w-100' %>
       <% else %>
-        <i class="fas fa-paw no-avatar__large card-img-top"></i>
+        <i class="fas fa-paw no-avatar__large profile-avatar card-img-top"></i>
       <% end %>
     </div>
     <!-- End avatar -->
@@ -35,22 +34,28 @@
       <% else %>
         <p class="card-text"><%= @user.bio %></p>
       <% end %>
+
+      <%= link_to '#', class: 'btn btn-outline-primary rounded-pill', data: { 'bs-toggle': 'modal', 'bs-target': '#editProfileModal' } do %>
+        <i class="fas fa-edit"></i>&nbsp;Edit Profile
+      <% end if user_signed_in? && @user == current_user %>
     </div>
     <!-- End details -->
   </div>
 
   <!-- Button to edit bio if this is current_user's profile -->
   <%# Include Edit Profile modal if user can edit this profile %>
-  <% if user_signed_in? %>
-    <div class="card-footer">
-      <%= link_to '#', class: 'btn btn-outline-primary rounded-pill', data: { 'bs-toggle': 'modal', 'bs-target': '#editProfileModal' } do %>
-        <i class="fas fa-edit"></i>&nbsp;Edit
-      <% end if @user == current_user %>
+  <div class="card-footer">
+    <h6>
+      <%= link_to followers_user_path, class: 'link-secondary' do %>
+        <i class="fas fa-user-friends me-2"></i><%= pluralize(@user.followers.count, 'follower') %>
+      <% end %>
+    </h6>
 
-      <%= link_to follow_user_path, method: :put, class: "btn #{current_user.following?(@user) ? 'btn-outline-secondary' : 'btn-outline-primary'} rounded-pill" do %>
+    <% if user_signed_in? %>
+      <%= link_to follow_user_path, method: :put, class: "btn btn-outline-#{current_user.following?(@user) ? 'secondary' : 'primary'} rounded-pill" do %>
         <i class="far fa-eye"></i>&nbsp;<%= current_user.following?(@user) ? 'Unfollow' : 'Follow' %>
       <% end unless @user == current_user %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
   <!-- End button -->
 </div>
