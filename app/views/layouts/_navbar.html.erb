@@ -14,6 +14,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse pt-2 pt-lg-0" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item d-grid gap-2 mb-2 mb-lg-0">
+            <%= link_to root_path, class: 'btn btn-outline-primary rounded-pill' do %>
+              <i class="fas fa-home"></i>
+            <% end %>
+          </li>
+      </ul>
       <ul class="navbar-nav me-lg-2 ms-auto">
         <% if user_signed_in? %>
           <li class="nav-item d-grid gap-2 me-lg-2 mb-2 mb-lg-0">

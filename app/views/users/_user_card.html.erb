@@ -14,7 +14,7 @@
     <div class="col-8 col-sm-6 col-md-12">
       <h4 class="card-title mt-2"><%= @user.username %></h4>
 
-      <h6 class="card-subtitle text-muted mb-2">
+      <h6 class="card-subtitle text-muted <%= 'mb-2' if @user.pronouns? || @user.location? || @user == current_user %>">
         <% if @user.pronouns? || @user.location? %>
           <% if @user.location? %><i class="fas fa-map-marker-alt me-2"></i><%= @user.location %><% end %>
           <%= '&middot;'.html_safe if @user.location? && @user.pronouns? %>
@@ -22,7 +22,7 @@
           <br>
         <% end %>
 
-        <small class="text-muted mb-2">
+        <small class="text-muted">
           <i class="fas fa-calendar-day me-2"></i>Joined <%= @user.created_at.strftime('%B %Y') %>
         </small>
       </h6>
