@@ -11,7 +11,9 @@ class User < ApplicationRecord
   scope :find_by_username, ->(value) { where('lower(username) = ?', value.downcase).first }
 
   def all_activity
-    PublicActivity::Activity.where(owner: self).or(PublicActivity::Activity.where(owner: followed_users))
+    PublicActivity::Activity.where(owner: self)
+                            .or(PublicActivity::Activity.where(owner: followed_users))
+                            .order(created_at: :desc)
   end
 
   include ImageUploader::Attachment(:avatar)

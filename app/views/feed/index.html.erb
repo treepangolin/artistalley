@@ -1,2 +1,6 @@
-<h1>feed#index</h1>
-<%= render_activities(@activities) if user_signed_in? %>
+<div class="row justify-content-center">
+  <div class="col-md-10 col-lg-8">
+    <h1>Feed</h1>
+    <%= render_activities(@activities) if user_signed_in? %>
+  </div>
+</div>

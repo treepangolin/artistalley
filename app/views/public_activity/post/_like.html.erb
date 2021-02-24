@@ -1,2 +1,1 @@
-<%= a.trackable.user.username %> liked something.
-<%= a.trackable.title %>
+<%= render partial: 'feed/event', locals: { activity: a, object: a.trackable, owner: a.owner, action: 'liked' } %>
