@@ -1,9 +1,9 @@
 <div class="row mb-4">
-  <div class="col-3 col-sm-2">
+  <div class="col-3 col-sm-2 col-lg-auto">
     <% if owner.avatar %>
-      <%= image_tag owner.avatar(:small).url, class: 'rounded-circle profile-avatar img-fluid' %>
+      <%= image_tag owner.avatar(:small).url, class: 'rounded-circle profile-avatar img-fluid feed-avatar' %>
     <% else %>
-      <i class="fas fa-paw no-avatar__large profile-avatar card-img-top"></i>
+      <i class="fas fa-paw no-avatar__large profile-avatar card-img-top feed-avatar"></i>
     <% end %>
   </div>
 
@@ -12,6 +12,7 @@
       <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
         <div class="d-flex flex-row align-items-center">
           <span class="text-muted">
+            <%= tag.i class: icon %>
             <%= link_to owner.username, owner %>
             <%= action %>
             <%= link_to object.title, object if object.title %>
@@ -27,7 +28,7 @@
         </small>
       </div>
 
-      <div class="card-body p-0 p-md-2 <%= 'text-center' if object.image %>">
+      <div class="card-body p-0 p-md-2 <%= object.image ? 'text-center' : 'journal-card text-fade overflow-hidden' %>">
         <% if object.image %>
           <%= link_to object do %>
             <%= image_tag object.image(:medium).url, class: 'rounded-3 img-fluid' %>
@@ -35,6 +36,7 @@
         <% else %>
           <div class="p-3 p-md-2 markdown-body">
             <%= markdown(object.body) if object.body %>
+            <%= link_to '', object, class: 'stretched-link' %>
           </div>
         <% end %>
       </div>

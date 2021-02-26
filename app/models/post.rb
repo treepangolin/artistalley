@@ -13,6 +13,16 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
+  validate :journal_or_art?
+
+  def journal_or_art?
+    if title.blank? && body.blank? && image_data.blank?
+      errors.add :base, :invalid, message: 'All fields are blank.'
+    elsif (title.present? ^ body.present?) && image_data.blank?
+      errors.add :base, :invalid, message: 'Both a title and body are required for journal posts.'
+    end
+  end
+
   private
 
   def set_slug

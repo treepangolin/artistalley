@@ -1,11 +1,11 @@
 <% if post.image %>
-  <%= link_to post, class: 'm-1 gallery-link shadow' do %>
+  <%= link_to post, class: 'm-1 gallery-link shadow flex-grow-1' do %>
     <%= image_tag post.image(:medium).url, class: 'rounded-3 gallery-image' %>
   <% end %>
 <% end %>
 
 <% unless post.image %>
-  <div class="card bg-dark rounded-3 m-1 border-0 journal-card">
+  <div class="card bg-dark rounded-3 m-1 border-0 journal-card__wall flex-grow-1">
     <div class="card-body text-fade overflow-hidden markdown-body">
       <h2 class="card-title text-muted float-end ms-3">
         <i class="far fa-file-alt"></i>

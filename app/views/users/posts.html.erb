@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center flex-wrap <%= 'h-75' if posts.empty? %>">
+<div class="d-flex justify-content-around flex-wrap <%= 'h-75' if posts.empty? %>">
   <% if posts.any? %>
     <%= render posts %>
   <% else %>

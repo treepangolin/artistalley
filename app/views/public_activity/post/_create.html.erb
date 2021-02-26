@@ -1,1 +1,6 @@
-<%= render partial: 'feed/event', locals: { activity: a, object: a.trackable, owner: a.owner, action: 'posted' } %>
+<%= render partial: 'feed/event', locals: { activity: a,
+                                            object: a.trackable,
+                                            owner: a.owner,
+                                            action: 'posted',
+                                            icon: 'fas fa-feather-alt'
+                                          } %>

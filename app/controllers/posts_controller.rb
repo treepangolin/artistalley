@@ -21,19 +21,23 @@ class PostsController < ApplicationController
     # Requires before_action above, else Rails will complain about current_user being nil
     @post = Post.new(post_params.merge(user_id: current_user.id))
 
-    if @post.save
-      @post.create_activity(key: 'post.create', owner: current_user)
-      redirect_to @post
-    else
-      render :new
+    respond_to do |format|
+      if @post.save
+        @post.create_activity(key: 'post.create', owner: current_user)
+        format.html { redirect_to @post, notice: 'Posted successfully.' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
-    if @post.update(post_params)
-      redirect_to @post
-    else
-      render :edit
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to @post, notice: 'Post edited successfully.' }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
