@@ -1,6 +1,6 @@
 <ul class="navbar-nav">
   <li class="navbar-item dropdown mx-auto">
-    <a class="nav-link dropdown-toggle p-lg-0" id="navbarUserDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="dropdown-toggle <%= 'p-0 pe-2 user-dropdown' if user_signed_in? %> btn btn-outline-primary rounded-pill" id="navbarUserDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <% if user_signed_in? %>
         <% if current_user.admin? %>
           <i class="fas fa-hammer text-primary"></i>

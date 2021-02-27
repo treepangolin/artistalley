@@ -100,6 +100,13 @@ mark {
     height: 256px;
     padding: 64px;
   }
+
+  &__feed {
+    @include no-avatar;
+    font-size: 32px;
+    width: 64px;
+    padding: 16px;
+  }
 }
 
 .profile-avatar {
@@ -108,7 +115,25 @@ mark {
 }
 
 .feed-avatar {
-  width: 96px;
+  width: 64px;
+}
+
+.user-dropdown {
+  &::after {
+    vertical-align: 0.15em;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .feed-avatar {
+    width: 32px;
+  }
+
+  .no-avatar__feed {
+    font-size: 16px;
+    width: 32px;
+    padding: 8px;
+  }
 }
 
 .gallery-image {

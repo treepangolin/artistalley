@@ -1,9 +1,9 @@
 <div class="row mb-4">
-  <div class="col-3 col-sm-2 col-lg-auto">
+  <div class="col-auto">
     <% if owner.avatar %>
-      <%= image_tag owner.avatar(:small).url, class: 'rounded-circle profile-avatar img-fluid feed-avatar' %>
+      <%= image_tag owner.avatar(:small).url, class: 'rounded-circle profile-avatar feed-avatar' %>
     <% else %>
-      <i class="fas fa-paw no-avatar__large profile-avatar card-img-top feed-avatar"></i>
+      <i class="fas fa-paw no-avatar__feed profile-avatar"></i>
     <% end %>
   </div>
 
