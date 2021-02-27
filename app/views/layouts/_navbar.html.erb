@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <!-- Brand text -->
-    <%= link_to 'ArtistAlley', root_path, class: 'navbar-brand' %>
+    <%= link_to 'ArtistAlley', user_signed_in? ? user_root_path : welcome_root_path, class: 'navbar-brand' %>
 
     <button class="navbar-toggler"
             type="button"
@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse pt-2 pt-lg-0" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item d-grid gap-2 mb-2 mb-lg-0">
-            <%= link_to root_path, class: 'btn btn-outline-primary rounded-pill' do %>
+            <%= link_to user_signed_in? ? user_root_path : welcome_root_path, class: 'btn btn-outline-primary rounded-pill' do %>
               <i class="fas fa-home"></i>
             <% end %>
           </li>

@@ -14,7 +14,13 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'feed#index'
+  authenticated do
+    root 'feed#index', as: :user_root
+  end
+
+  unauthenticated do
+    root 'welcome#index', as: :welcome_root
+  end
 
   devise_for :users, path: 'auth', controllers: {
     registrations: 'auth/registrations'
