@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   authenticated do
     root 'feed#index', as: :user_root
+    resources :conversations
   end
 
   unauthenticated do

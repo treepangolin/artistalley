@@ -17,8 +17,11 @@
       <h6 class="card-subtitle text-muted <%= 'mb-2' if @user.pronouns? || @user.location? || @user == current_user %>">
         <% if @user.pronouns? || @user.location? %>
           <% if @user.location? %><i class="fas fa-map-marker-alt me-2"></i><%= @user.location %><% end %>
-          <%= '&middot;'.html_safe if @user.location? && @user.pronouns? %>
-          <%= @user.pronouns if @user.pronouns -%>
+          <% if @user.location? && @user.pronouns? %>
+            <br class="d-lg-none">
+            <span class="d-none d-lg-inline">&middot;</span>
+          <% end %>
+          <%= @user.pronouns if @user.pronouns %>
           <br>
         <% end %>
 

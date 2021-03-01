@@ -1,5 +1,5 @@
 <ul class="navbar-nav">
-  <li class="navbar-item dropdown mx-auto">
+  <li class="navbar-item dropdown d-grid gap-2">
     <a class="dropdown-toggle <%= 'p-0 pe-2 user-dropdown' if user_signed_in? %> btn btn-outline-primary rounded-pill" id="navbarUserDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <% if user_signed_in? %>
         <% if current_user.admin? %>
@@ -7,13 +7,15 @@
         <% end %>
 
         <% if current_user.avatar %>
-          <%= image_tag current_user.avatar(:small).url, height: 38, class: 'rounded-circle' %>
+          <%= image_tag current_user.avatar(:small).url, height: 38, class: 'rounded-circle me-1 me-lg-0' %>
         <% else %>
-          <i class="fas fa-paw no-avatar__small"></i>
+          <i class="fas fa-paw no-avatar__small me-1 me-lg-0"></i>
         <% end %>
       <% else %>
         <i class="fas fa-sign-in-alt"></i>
       <% end %>
+
+      <span class="d-lg-none"><%= current_user.username %></span>
     </a>
     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarUserDropdownLink">
       <% if user_signed_in? %>

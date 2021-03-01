@@ -146,28 +146,26 @@ mark {
   max-width: 512px;
 }
 
-.text-fade {
-  position: relative;
-
-  &:after {
-    content: '';
-    text-align: right;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 4em;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), $dark 100%);
-    border-radius: $border-radius;
-  }
-}
-
 .journal-card {
   max-height: 256px;
+  position: relative;
+  overflow: hidden;
+  content: '';
 
   &__wall {
     height: 256px;
     min-width: 256px;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent 128px, $dark);
+    border-radius: $border-radius;
   }
 }
 

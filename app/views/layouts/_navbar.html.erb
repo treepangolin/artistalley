@@ -17,7 +17,8 @@
       <ul class="navbar-nav">
         <li class="nav-item d-grid gap-2 mb-2 mb-lg-0">
             <%= link_to user_signed_in? ? user_root_path : welcome_root_path, class: 'btn btn-outline-primary rounded-pill' do %>
-              <i class="fas fa-home"></i>
+              <i class="fas fa-home me-1 me-lg-0"></i>
+              <span class="d-lg-none">Home</span>
             <% end %>
           </li>
       </ul>
@@ -25,13 +26,22 @@
         <% if user_signed_in? %>
           <li class="nav-item d-grid gap-2 me-lg-2 mb-2 mb-lg-0">
             <%= link_to new_post_path, class: 'btn btn-outline-primary rounded-pill' do %>
-              <i class="fas fa-plus"></i>
+              <i class="fas fa-plus me-1 me-lg-0"></i>
+              <span class="d-lg-none">New Post</span>
+            <% end %>
+          </li>
+
+          <li class="nav-item d-grid gap-2 me-lg-2 mb-2 mb-lg-0">
+            <%= link_to conversations_path, class: 'btn btn-outline-primary rounded-pill' do %>
+              <i class="far fa-envelope me-1 me-lg-0"></i>
+              <span class="d-lg-none">Mailbox</span>
             <% end %>
           </li>
 
           <li class="nav-item d-grid gap-2 mb-2 mb-lg-0">
             <%= link_to user_path(current_user), class: 'btn btn-outline-primary rounded-pill' do %>
-              <i class="far fa-user"></i>
+              <i class="far fa-user me-1 me-lg-0"></i>
+              <span class="d-lg-none">Profile</span>
             <% end %>
           </li>
         <% end %>

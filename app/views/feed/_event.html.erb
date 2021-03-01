@@ -28,7 +28,7 @@
         </small>
       </div>
 
-      <div class="card-body p-0 p-md-2 <%= object.image ? 'text-center' : 'journal-card text-fade overflow-hidden' %>">
+      <div class="card-body p-0 p-md-2 <%= object.image ? 'text-center' : 'journal-card' %>">
         <% if object.image %>
           <%= link_to object do %>
             <%= image_tag object.image(:medium).url, class: 'rounded-3 img-fluid' %>
