@@ -5,7 +5,7 @@
       <% if @user.avatar %>
         <%= image_tag @user.avatar(:small).url, class: 'rounded-circle profile-avatar w-100' %>
       <% else %>
-        <i class="fas fa-paw no-avatar__large profile-avatar card-img-top"></i>
+        <i class="fas fa-paw no-avatar__user-card profile-avatar card-img-top"></i>
       <% end %>
     </div>
     <!-- End avatar -->
@@ -39,7 +39,7 @@
       <% end %>
 
       <%= link_to '#', class: 'btn btn-outline-primary rounded-pill', data: { 'bs-toggle': 'modal', 'bs-target': '#editProfileModal' } do %>
-        <i class="fas fa-edit"></i>&nbsp;Edit Profile
+        <i class="fas fa-edit me-2"></i>Edit Profile
       <% end if user_signed_in? && @user == current_user %>
     </div>
     <!-- End details -->
@@ -48,16 +48,30 @@
   <!-- Button to edit bio if this is current_user's profile -->
   <%# Include Edit Profile modal if user can edit this profile %>
   <div class="card-footer">
-    <h6>
+    <h6 class="mb-1">
       <%= link_to followers_user_path, class: 'link-secondary' do %>
         <i class="fas fa-user-friends me-2"></i><%= pluralize(@user.followers.count, 'follower') %>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <% if @user.following?(current_user) && !current_user.following?(@user) %>
+          <span class="badge bg-follows-you"><i class="fas fa-long-arrow-alt-right me-1"></i>Follows you</span>
+        <% elsif @user.following?(current_user) && current_user.following?(@user) %>
+          <span class="badge bg-mutuals"><i class="fas fa-exchange-alt me-1"></i>Mutual</span>
+        <% end %>
       <% end %>
     </h6>
 
     <% if user_signed_in? %>
-      <%= link_to follow_user_path, method: :put, class: "btn btn-outline-#{current_user.following?(@user) ? 'secondary' : 'primary'} rounded-pill" do %>
-        <i class="far fa-eye"></i>&nbsp;<%= current_user.following?(@user) ? 'Unfollow' : 'Follow' %>
-      <% end unless @user == current_user %>
+      <% unless @user == current_user %>
+        <%= link_to follow_user_path, method: :put, class: "m-1 mt-2 btn btn-outline-#{current_user.following?(@user) ? 'secondary' : 'primary'} rounded-pill" do %>
+          <i class="far fa-eye"></i>&nbsp;<%= current_user.following?(@user) ? 'Unfollow' : 'Follow' %>
+        <% end %>
+
+        <%= link_to new_message_path(recipient: @user.username), class: 'm-1 mt-2 btn btn-outline-primary rounded-pill' do %>
+          <i class="fas fa-paper-plane me-2"></i>Message
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <!-- End button -->

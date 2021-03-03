@@ -1,4 +1,4 @@
-<div class="<%= 'd-flex justify-content-center flex-wrap h-75' if users.empty? %>">
+<div class="p-1 <%= 'd-flex justify-content-center flex-wrap h-75' if users.empty? %>">
   <% if users.any? %>
     <%= render users %>
   <% else %>

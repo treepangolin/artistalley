@@ -1,0 +1,75 @@
+$no-avatar-sizes: (
+  xsmall: 24px,
+  small: 36px,
+  medium: 128px,
+  large: 256px,
+  feed: 64px,
+  user-card: 256px
+);
+
+@mixin no-avatar {
+  background: rgb(100, 100, 100);
+  color: white;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+@each $name, $size in $no-avatar-sizes {
+  .no-avatar__#{$name} {
+    @include no-avatar;
+    font-size: calc(#{$size} / 2);
+    width: $size;
+    height: $size;
+    padding: calc(#{$size} / 4);
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .feed-avatar {
+    width: 48px !important;
+  }
+
+  .no-avatar {
+    &__feed {
+      $size: 48px;
+
+      font-size: calc(#{$size} / 2);
+      width: $size;
+      height: $size;
+      padding: calc(#{$size} / 4);
+    }
+
+    &__user-card {
+      $size: 128px;
+
+      font-size: calc(#{$size} / 2);
+      width: $size;
+      height: $size;
+      padding: calc(#{$size} / 4);
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .no-avatar {
+    &__user-card {
+      $size: 96px;
+
+      font-size: calc(#{$size} / 2);
+      width: $size;
+      height: $size;
+      padding: calc(#{$size} / 4);
+    }
+  }
+}
+
+.profile-avatar {
+  box-shadow: 0px 8px 30px -10px rgba(0,0,0,0.60);
+  vertical-align: baseline;
+}
+
+.feed-avatar {
+  width: 64px;
+}

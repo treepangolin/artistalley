@@ -1,0 +1,23 @@
+.bg-notice {
+  background-color: $primary;
+}
+
+.bg-alert {
+  background-color: $danger;
+}
+
+.bg-mutuals {
+  background-color: rgba($primary, .35) !important;
+}
+
+.bg-follows-you {
+  background-color: rgba($secondary, .35) !important;
+}
+
+.turbo-progress-bar {
+  background-color: $primary;
+}
+
+.form-floating.dark {
+  color: white !important;
+}
