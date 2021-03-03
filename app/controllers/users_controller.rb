@@ -2,10 +2,8 @@ class UsersController < ApplicationController
   # Separate User controller to handle showing user profiles
   # Independent from Devise
   before_action :set_user
-  before_action :set_header
 
   def show
-    @header = 'All Posts'
     render 'posts', locals: { posts: @user.posts }
   end
 
@@ -35,9 +33,5 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find_by_username(params[:id])
-  end
-
-  def set_header
-    @header = action_name.capitalize
   end
 end
