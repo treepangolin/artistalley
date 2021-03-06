@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   authenticated do
     root 'feed#index', as: :user_root
     resources :messages
-    resources :conversations, only: %i[index show]
+    resources :conversations, only: %i[index show] do
+      collection do
+        get 'sent'
+      end
+    end
   end
 
   unauthenticated do

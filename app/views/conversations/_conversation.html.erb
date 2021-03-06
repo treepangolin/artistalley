@@ -1,2 +1,28 @@
-<%= link_to "Conversation between #{conversation.sender.username} & #{conversation.recipient.username}", conversation %>
-<br>
+<li class="list-group-item bg-dark d-flex align-items-center justify-content-between">
+  <div class="d-flex align-items-center">
+    <div class="avatar-group me-3">
+      <% if conversation.sender.avatar %>
+        <%= image_tag conversation.sender.avatar(:small).url, width: 36, height: 36, class: 'rounded-circle grouped-avatar' %>
+      <% else %>
+        <i class="fas fa-paw no-avatar__small grouped-avatar"></i>
+      <% end %>
+
+      <% if conversation.recipient.avatar %>
+        <%= image_tag conversation.recipient.avatar(:small).url, width: 36, height: 36, class: 'rounded-circle grouped-avatar' %>
+      <% else %>
+        <i class="fas fa-paw no-avatar__small grouped-avatar"></i>
+      <% end %>
+    </div>
+
+    <%= link_to conversation.subject, conversation %>
+  </div>
+
+  <div class="text-muted">
+    <% if conversation.messages.count < 1 %>
+      <i class="fas fa-reply"></i>
+      <%= time_since_created(conversation.messages.last) %>
+    <% else %>
+      <%= time_since_created(conversation.messages.first) %>
+    <% end %>
+  </div>
+</li>

@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+      <h1 class="mb-0">Mail</h1>
+    </div>
+
+    <div class="align-self-center">
+      <%= link_to new_message_path, class: 'btn rounded-pill btn-outline-primary' do %>
+        <i class="fas fa-paper-plane"></i>
+      <% end if @conversations.any? %>
+
+      <button class="btn rounded-pill btn-dark d-md-none ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#folders" aria-expanded="false" aria-controls="folders">
+        <i class="fas fa-caret-down"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-4 col-lg-3 mb-3 collapse d-md-inline" id="folders">
+    <nav class="nav flex-column nav-pills">
+      <%= link_to 'Inbox', conversations_path(), class: "nav-link #{nav_active(conversations_path())}" %>
+      <%= link_to 'Sent', sent_conversations_path(), class: "nav-link #{nav_active(sent_conversations_path())}" %>
+    </nav>
+  </div>
+
+  <div class="col-12 col-md-8 col-lg-9">
+    <% if @conversations.any? %>
+      <div class="card bg-dark h-100">
+        <div class="card-body p-0">
+          <ul class="list-group list-group-flush">
+            <%= render @conversations %>
+          </ul>
+        </div>
+      </div>
+    <% else %>
+      <div class="text-center">
+        <h1 class="text-muted d-inline mx-auto">
+          <i class="fas fa-wind"></i> <i class="fas fa-leaf"></i>
+        </h1>
+        <br>
+        <h2 class="text-muted d-inline">No conversations</h2>
+        <br>
+        <%= link_to 'Start one!', new_message_path, class: 'btn btn-outline-primary rounded-pill mt-3' %>
+      </div>
+    <% end %>
+  </div>
+</div>

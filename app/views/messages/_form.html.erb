@@ -34,7 +34,9 @@
     <%= form.label :body %>
   </div>
 
-  <div class="btn-group" role="group" aria-label="Form controls">
-    <%= form.submit class: 'btn btn-primary' %>
-  </div>
+  <%= form.submit class: 'btn btn-primary mx-1' %>
+
+  <%= link_to :back, class: 'btn btn-secondary' do %>
+    <i class="fas fa-long-arrow-alt-left mx-1"></i>Back
+  <% end unless @message.persisted?  %>
 <% end %>

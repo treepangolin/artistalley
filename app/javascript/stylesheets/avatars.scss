@@ -73,3 +73,11 @@ $no-avatar-sizes: (
 .feed-avatar {
   width: 64px;
 }
+
+.grouped-avatar {
+  box-shadow: 0 0 1px 0.225em $dark;
+}
+
+.grouped-avatar:not(:first-child) {
+  margin-left: -($spacer * .5);
+}
