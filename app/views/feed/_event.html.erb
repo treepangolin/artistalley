@@ -20,11 +20,7 @@
         </div>
 
         <small class="text-muted">
-          <% if activity.created_at < 7.days.ago %>
-            <%= activity.created_at.strftime("#{activity.created_at.day.ordinalize} of %B, %Y") %>
-          <% else %>
-            <%= time_ago_in_words(activity.created_at) + ' ago' %>
-          <% end %>
+          <%= time_since_created(activity) %>
         </small>
       </div>
 

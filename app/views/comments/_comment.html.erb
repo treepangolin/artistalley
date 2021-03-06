@@ -24,11 +24,7 @@
 
       <%= link_to url_for(comment: comment.id, anchor: dom_id(comment)), class: 'link-secondary' do %>
         <small>
-          <% if comment.created_at < 7.days.ago %>
-            <%= comment.created_at.strftime("#{comment.created_at.day.ordinalize} of %B, %Y") %>
-          <% else %>
-            <%= time_ago_in_words(comment.created_at) + ' ago' %>
-          <% end %>
+          <%= time_since_created(comment) %>
         </small>
       <% end %>
     </div>

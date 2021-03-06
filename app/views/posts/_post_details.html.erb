@@ -15,12 +15,7 @@
         <h6 class="card-title"><%= @post.user.username %></h6>
 
         <h6 class="card-subtitle text-muted">
-          <%# If post was created less than 7 days ago, then display relative time; otherwise, timestamp %>
-          <% if @post.created_at < 7.days.ago %>
-            <%= @post.created_at.strftime("#{@post.created_at.day.ordinalize} of %B, %Y") %>
-          <% else %>
-            <%= time_ago_in_words(@post.created_at) + ' ago' %>
-          <% end %>
+          <%= time_since_created(@post, long: true) %>
         </h6>
       </div>
     </div>

@@ -8,7 +8,9 @@ class User < ApplicationRecord
   enum role: %i[default admin]
 
   # If someone wants to look a username up by URL, make the find method case insensitive at least
-  scope :find_by_username, ->(value) { where('lower(username) = ?', value.downcase).first }
+  def self.find_by_username(username)
+    User.where('lower(username) = ?', username.downcase).limit(1).first
+  end
 
   def all_activity
     PublicActivity::Activity.where(owner: self)

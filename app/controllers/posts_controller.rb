@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   def create
     # Attach current user to the post being created
     # Requires before_action above, else Rails will complain about current_user being nil
-    @post = Post.new(post_params.merge(user_id: current_user.id))
+    @post = Post.new(post_params.merge(user: current_user))
 
     respond_to do |format|
       if @post.save

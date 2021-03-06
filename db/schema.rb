@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_03_01_200403) do
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.bigint "conversation_id", null: false
+    t.bigint "conversation_id"
     t.bigint "user_id", null: false
     t.boolean "read", default: false
     t.datetime "created_at", precision: 6, null: false
