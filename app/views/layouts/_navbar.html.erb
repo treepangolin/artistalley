@@ -2,7 +2,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <!-- Brand text -->
-    <%= link_to 'ArtistAlley', user_signed_in? ? user_root_path : welcome_root_path, class: 'navbar-brand' %>
+    <%= link_to user_signed_in? ? user_root_path : welcome_root_path, class: 'navbar-brand d-flex align-items-center' do %>
+      anthro <span class="badge bg-primary ms-1">works</span>
+    <% end %>
 
     <button class="navbar-toggler"
             type="button"
