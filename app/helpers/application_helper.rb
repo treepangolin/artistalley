@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def time_since_created(object, long: false)
     if object.created_at < 7.days.ago
-      object.created_at.strftime(long ? '%B %d, %Y' : '%d %b, %Y')
+      object.created_at.strftime(long ? '%d %B, %Y' : '%Y-%m-%d')
     else
       "#{time_ago_in_words(object.created_at)} ago"
     end
