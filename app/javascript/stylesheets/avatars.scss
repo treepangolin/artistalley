@@ -78,6 +78,6 @@ $no-avatar-sizes: (
   box-shadow: 0 0 1px 0.225em $dark;
 }
 
-.grouped-avatar:not(:first-child) {
+.grouped-avatar:not(:first-child), #recipientAvatar > .grouped-avatar {
   margin-left: -($spacer * .5);
 }
