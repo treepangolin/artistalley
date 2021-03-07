@@ -14,6 +14,21 @@
   background-color: rgba($secondary, .35) !important;
 }
 
+.unread-indicator {
+  background-color: complement($primary);
+  top: 15% !important;
+  left: 95% !important;
+  padding: 0.4rem !important;
+  transform: translate(-50%, -50%) !important;
+  border-radius: 50%;
+
+  &__mailbox {
+    background-color: complement($primary);
+    padding: 0.4rem !important;
+    border-radius: 50%;
+  }
+}
+
 .turbo-progress-bar {
   background-color: $primary;
 }

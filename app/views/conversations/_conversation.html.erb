@@ -1,5 +1,11 @@
 <li class="list-group-item bg-dark d-flex flex-wrap align-items-center justify-content-between">
   <div class="d-flex align-items-center">
+    <%= tag.div class: 'me-3' do %>
+      <span class="badge unread-indicator__mailbox">
+        <span class="visually-hidden">unread messages</span>
+      </span>
+    <% end if conversation.unread_for?(current_user) %>
+
     <div class="avatar-group me-3 d-none d-md-block">
       <%= link_to conversation.sender, id: 'senderAvatar' do %>
         <% if conversation.sender.avatar %>

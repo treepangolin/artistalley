@@ -10,6 +10,10 @@ class Conversation < ApplicationRecord
 
   validates_presence_of :recipient, :subject, :sender
 
+  def unread_for?(recipient)
+    messages.where.not(user: recipient).and(messages.where(read: false)).count.positive?
+  end
+
   private
 
   def set_slug

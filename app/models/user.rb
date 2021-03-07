@@ -12,6 +12,10 @@ class User < ApplicationRecord
     User.where('lower(username) = ?', username.downcase).limit(1).first
   end
 
+  def unread_messages?
+    messages.where(read: false).count.positive?
+  end
+
   def all_activity
     PublicActivity::Activity.where(owner: self)
                             .or(PublicActivity::Activity.where(owner: followed_users))
@@ -26,6 +30,8 @@ class User < ApplicationRecord
   has_many :passive_follows, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy
   has_many :followed_users, through: :active_follows, source: :followed_user
   has_many :followers, through: :passive_follows, source: :following_user
+  has_many :conversations, ->(user) { unscope(:where).where(sender: user).or(where(recipient: user)) }
+  has_many :messages, through: :conversations
   acts_as_voter
 
   # Allow user to sign in with either email or username
