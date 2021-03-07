@@ -79,5 +79,5 @@ $no-avatar-sizes: (
 }
 
 .grouped-avatar:not(:first-child), #recipientAvatar > .grouped-avatar {
-  margin-left: -($spacer * .5);
+  margin-left: -($spacer * .85);
 }

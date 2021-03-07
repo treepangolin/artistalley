@@ -1,6 +1,6 @@
-<li class="list-group-item bg-dark d-flex align-items-center justify-content-between">
+<li class="list-group-item bg-dark d-flex flex-wrap align-items-center justify-content-between">
   <div class="d-flex align-items-center">
-    <div class="avatar-group me-3">
+    <div class="avatar-group me-3 d-none d-md-block">
       <%= link_to conversation.sender, id: 'senderAvatar' do %>
         <% if conversation.sender.avatar %>
           <%= image_tag conversation.sender.avatar(:small).url, width: 36, height: 36, class: 'rounded-circle grouped-avatar' %>
@@ -22,11 +22,8 @@
   </div>
 
   <div class="text-muted">
-    <% if conversation.messages.count < 1 %>
-      <i class="fas fa-reply"></i>
-      <%= time_since_created(conversation.messages.last) %>
-    <% else %>
-      <%= time_since_created(conversation.messages.first) %>
-    <% end %>
+    <%= link_to conversation.messages.last.user == current_user ? 'You' : conversation.messages.last.user.username, conversation.messages.last.user %>
+    <%= tag.i class: conversation.messages.count <= 1 ? 'fas fa-envelope mx-1' : 'fas fa-reply mx-1' %>
+    <%= time_since_created(conversation.messages.last) %>
   </div>
 </li>

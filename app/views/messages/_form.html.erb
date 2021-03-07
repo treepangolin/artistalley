@@ -36,7 +36,7 @@
 
   <%= form.submit class: 'btn btn-primary mx-1' %>
 
-  <%= link_to :back, class: 'btn btn-secondary' do %>
-    <i class="fas fa-long-arrow-alt-left mx-1"></i>Back
+  <%= link_to conversations_path, class: 'btn btn-secondary' do %>
+    <i class="fas fa-long-arrow-alt-left mx-1"></i>Inbox
   <% end unless @message.persisted?  %>
 <% end %>
