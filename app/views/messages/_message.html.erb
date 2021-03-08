@@ -1,4 +1,10 @@
-<div class="card bg-dark">
+<% if message == @last_unread && @conversation.replies? %>
+  <div class="separator new-message mb-3">
+    New messages
+  </div>
+<% end %>
+
+<div class="card bg-dark mb-3">
   <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
     <div class="d-flex flex-row align-items-center">
       <%= link_to message.user, class: 'me-2' do %>

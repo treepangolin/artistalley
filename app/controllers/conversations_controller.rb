@@ -1,24 +1,27 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_counts, except: :show
 
   def index
-    @conversations = Conversation.where(recipient: current_user)
+    @conversations = Conversation.inbox(current_user)
     render :list
   end
 
   def show
     @conversation = Conversation.friendly.find(params[:id])
+    @last_unread = @conversation.unreads_for(current_user).last
+    @message = Message.new(conversation_id: @conversation.id)
+
+    if @conversation.unreads_for?(current_user)
+      @conversation.unreads_for(current_user).each do |message|
+        message.update!(read: true)
+      end
+    end
+
+    head :forbidden if (@conversation.sender != current_user) && (@conversation.recipient != current_user)
   end
 
   def sent
     @conversations = Conversation.where(sender: current_user)
     render :list
-  end
-
-  private
-
-  def set_counts
-    @amount_sent = Conversation.where(sender: current_user).count
   end
 end

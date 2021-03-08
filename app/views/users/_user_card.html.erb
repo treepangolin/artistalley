@@ -50,7 +50,7 @@
   <div class="card-footer">
     <h6 class="mb-1">
       <%= link_to followers_user_path, class: 'link-secondary' do %>
-        <i class="fas fa-user-friends me-2"></i><%= pluralize(@user.followers.count, 'follower') %>
+        <i class="fas fa-user-friends me-2"></i><%= pluralize(@user.followers.size, 'follower') %>
       <% end %>
 
       <% if user_signed_in? %>

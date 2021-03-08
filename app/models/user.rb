@@ -13,7 +13,7 @@ class User < ApplicationRecord
   end
 
   def unread_messages?
-    messages.where.not(user: self).and(messages.where(read: false)).count.positive?
+    messages.where.not(user: self).and(messages.where(read: false)).size.positive?
   end
 
   def all_activity

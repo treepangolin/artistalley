@@ -8,11 +8,14 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params.merge(user: current_user))
-    @message.conversation = Conversation.new(
-      subject: @message.subject,
-      sender: current_user,
-      recipient: User.find_by_username(@message.recipient)
-    )
+
+    unless @message.conversation_id
+      @message.conversation = Conversation.new(
+        subject: @message.subject,
+        sender: current_user,
+        recipient: User.find_by_username(@message.recipient)
+      )
+    end
 
     respond_to do |format|
       if @message.save
@@ -26,6 +29,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:subject, :body, :recipient)
+    params.require(:message).permit(:subject, :body, :recipient, :conversation_id)
   end
 end

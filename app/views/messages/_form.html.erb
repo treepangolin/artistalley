@@ -13,7 +13,9 @@
     <% end %>
   </div>
 
-  <div class="row">
+  <%= form.hidden_field :conversation_id if @message.conversation_id %>
+
+  <%= tag.div class: 'row' do %>
     <div class="col-lg-4 col">
       <div class="form-floating">
         <%= form.text_field :recipient, autocomplete: 'recipient', class: 'form-control bg-dark border-dark text-white', placeholder: 'Recipient' %>
@@ -27,7 +29,7 @@
         <%= form.label :subject, 'Subject' %>
       </div>
     </div>
-  </div>
+  <% end unless @message.conversation_id %>
 
   <div class="form-floating my-3">
     <%= form.text_area :body, class: 'form-control bg-dark border-dark text-white', placeholder: 'Body', style: 'height: 10rem' %>
@@ -38,5 +40,5 @@
 
   <%= link_to conversations_path, class: 'btn btn-secondary' do %>
     <i class="fas fa-long-arrow-alt-left mx-1"></i>Inbox
-  <% end unless @message.persisted?  %>
+  <% end unless @message.persisted? || @message.conversation_id %>
 <% end %>

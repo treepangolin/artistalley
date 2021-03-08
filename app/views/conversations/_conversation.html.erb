@@ -4,7 +4,7 @@
       <span class="badge unread-indicator__mailbox">
         <span class="visually-hidden">unread messages</span>
       </span>
-    <% end if conversation.unread_for?(current_user) %>
+    <% end if conversation.unreads_for?(current_user) %>
 
     <div class="avatar-group me-3 d-none d-md-block">
       <%= link_to conversation.sender, id: 'senderAvatar' do %>
@@ -29,7 +29,7 @@
 
   <div class="text-muted">
     <%= link_to conversation.messages.last.user == current_user ? 'You' : conversation.messages.last.user.username, conversation.messages.last.user %>
-    <%= tag.i class: conversation.messages.count <= 1 ? 'fas fa-envelope mx-1' : 'fas fa-reply mx-1' %>
+    <%= tag.i class: conversation.replies? ? 'fas fa-reply mx-1' : 'fas fa-envelope mx-1' %>
     <%= time_since_created(conversation.messages.last) %>
   </div>
 </li>
