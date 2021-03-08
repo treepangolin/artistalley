@@ -1,0 +1,6 @@
+<tr>
+  <th scope="row"><%= invite.id %></th>
+  <td><%= invite.code %></td>
+  <td><%= invite.redeemed %></td>
+  <td><%= invite.user.nil? ? 'Nobody' : invite.user %></td>
+</tr>

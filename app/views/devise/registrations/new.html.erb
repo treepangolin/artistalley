@@ -4,6 +4,11 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="form-floating my-3 col-sm-10 col-lg-4">
+    <%= form.text_field :invite_code, autocomplete: 'invite_code', class: 'form-control bg-dark border-dark text-white', placeholder: 'Invite code' %>
+    <%= form.label :invite_code, 'Invite code' %>
+  </div>
+
+  <div class="form-floating my-3 col-sm-10 col-lg-4">
     <%= form.text_field :username, autocomplete: 'username', class: 'form-control bg-dark border-dark text-white', placeholder: 'Username' %>
     <%= form.label :username, 'Username' %>
   </div>

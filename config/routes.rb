@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   authenticated do
     root 'feed#index', as: :user_root
+    resources :invites, only: %i[index new create]
     resources :messages
     resources :conversations, only: %i[index show] do
       collection do

@@ -36,15 +36,35 @@ class User < ApplicationRecord
 
   # Allow user to sign in with either email or username
   attr_writer :login
+  attr_accessor :invite_code
 
   # Shoutout to Django for allowing users with the same username as long as they're different cases
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   # Only allow username to contain alphanumeric, periods & underscores
   validates_format_of :username, with: /^[a-zA-Z0-9_.]*$/, multiline: true
 
+  validates :invite_code,
+            on: :create,
+            presence: true,
+            inclusion: { in: proc { Invite.where(redeemed: false).map(&:code) } }
+
   # Set role to default on account creation
   after_initialize do
     self.role ||= :default if new_record?
+  end
+
+  after_create do
+    invite = Invite.find_by_code(invite_code)
+    invite.redeemed = true
+    invite.user = self
+    invite.save
+  end
+
+  before_destroy do
+    invite = Invite.find_by_user_id(id)
+    invite.redeemed = false
+    invite.user = nil
+    invite.save
   end
 
   # /user/[username] instead of /user/[id]
