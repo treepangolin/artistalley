@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show] do
+  resources :users, path: 'user', only: [:show] do
     member do
       get 'likes', to: 'users#likes'
       put 'follow', to: 'users#follow'
