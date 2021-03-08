@@ -1,0 +1,19 @@
+<ul class="navbar-nav">
+  <li class="navbar-item dropdown d-grid gap-2 me-lg-2 mb-2 mb-lg-0">
+    <a class="dropdown-toggle btn btn-outline-danger rounded-pill" id="navbarAdminDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fas fa-hammer"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarAdminDropdownLink">
+      <li>
+        <h6 class="dropdown-header">Administration</h6>
+      </li>
+
+      <li>
+        <%= link_to invites_path, class: 'dropdown-item' do %>
+          <i class="fas fa-user-plus"></i>
+          &nbsp;Invites
+        <% end %>
+      </li>
+    </ul>
+  </li>
+</ul>
