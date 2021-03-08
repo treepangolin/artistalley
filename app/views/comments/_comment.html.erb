@@ -39,9 +39,9 @@
       <div class="card-footer d-flex justify-content-start align-items-center">
         <%= link_to '#', data: { action: 'click->replies#toggle' }, class: 'link-secondary me-2' do %>
           <i class="fas fa-reply"></i> Reply
-        <% end %>
+        <% end if can? :create, Comment %>
 
-        <% if comment.user == current_user %>
+        <% if can? :destroy, comment %>
           <%= link_to [comment.commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-secondary' do %>
             <i class="fas fa-trash"></i> Delete
           <% end %>

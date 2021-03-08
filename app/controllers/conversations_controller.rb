@@ -8,6 +8,8 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.friendly.find(params[:id])
+    authorize! :read, @conversation
+
     @last_unread = @conversation.unreads_for(current_user).last
     @message = Message.new(conversation_id: @conversation.id)
 

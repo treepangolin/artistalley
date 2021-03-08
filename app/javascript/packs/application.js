@@ -10,13 +10,18 @@ import "channels"
 import "stylesheets/application"
 import "@popperjs/core"
 import "@fortawesome/fontawesome-free/css/all"
-import { Toast } from "bootstrap"
+import { Toast, Tooltip } from "bootstrap"
 
 Rails.start()
 ActiveStorage.start()
 
 // When page completely loads, show toasts for flash messages
 document.addEventListener("turbo:load", () => {
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new Tooltip(tooltipTriggerEl)
+  })
+
   var toastElList = [].slice.call(document.querySelectorAll('.toast'))
   var toastList = toastElList.map(function (toastEl) {
     return new Toast(toastEl)

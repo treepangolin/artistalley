@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
 
   include PublicActivity::StoreController
 
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden, content_type: 'text/html' }
+      format.js { head :forbidden, content_type: 'text/html' }
+      format.html { redirect_to user_signed_in? ? user_root_path : welcome_root_path, alert: exception.message }
+    end
+  end
+
   protected
 
   # Configure extra permitted parameters as the Devise User model has added fields

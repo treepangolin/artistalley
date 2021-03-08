@@ -9,7 +9,9 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params.merge(user: current_user))
 
-    unless @message.conversation_id
+    if @message.conversation_id
+      authorize! :create, @message
+    else
       @message.conversation = Conversation.new(
         subject: @message.subject,
         sender: current_user,
