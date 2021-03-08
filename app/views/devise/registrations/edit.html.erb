@@ -59,6 +59,14 @@
         id="v-pills-danger"
         role="tabpanel"
         aria-labelledby="v-pills-danger-tab">
+      <h2>Delete Account</h2>
+      <div class="form-text" id="deletionHelp">
+        <strong>Account deletion is permanent and irreversible.</strong>
+        <ul>
+          <li>Deleting your account will delete all data associated with you from the database</li>
+          <li>No data referencing you will remain on the server</li>
+        </ul>
+      </div>
       <%= button_to registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' do %>
         <i class="fas fa-user-slash"></i> Delete Account
       <% end %>
