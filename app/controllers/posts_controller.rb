@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy like]
   before_action :authenticate_user!, except: %i[show index] # Require authentication to [create, edit] posts
+  load_and_authorize_resource
 
   def index
     @posts = Post.all

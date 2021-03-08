@@ -24,6 +24,8 @@ gem 'redis', '~> 4.0'
 # Use Devise for user accounts
 gem 'devise', '~> 4.7'
 
+gem 'cancancan', '~> 3.2', '>= 3.2.1'
+
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
