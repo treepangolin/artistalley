@@ -87,6 +87,6 @@ test:
 #
 production:
   <<: *default
-  database: artistalley_production
-  username: artistalley
-  password: <%= ENV['ARTISTALLEY_DATABASE_PASSWORD'] %>
+  database: anthroworks_production
+  username: anthroworks
+  password: <%= ENV['ANTHROWORKS_DATABASE_PASSWORD'] %>
