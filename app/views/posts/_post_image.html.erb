@@ -1,11 +1,11 @@
 <% if @post.image %>
   <div class="mb-3 col-auto art-fit">
     <%= link_to '#', data: { action: 'click->lightbox#toggle' } do %>
-      <%= image_tag @post.image(:medium_large).url, class: 'rounded-3 img-fluid' %>
+      <%= image_tag @post.image(:scaled).url, class: 'rounded-3 img-fluid' %>
     <% end %>
   </div>
 
   <div class="lightbox d-none position-fixed" data-lightbox-target="lightbox" data-action="click->lightbox#toggle">
-    <%= image_tag @post.image(:large).url, class: 'rounded-3 img-fluid position-absolute', data: { action: 'keyup@window->lightbox#close' } %>
+    <%= image_tag @post.image(:scaled).url, class: 'rounded-3 img-fluid position-absolute', data: { action: 'keyup@window->lightbox#close' } %>
   </div>
 <% end %>

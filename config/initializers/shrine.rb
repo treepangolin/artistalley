@@ -1,10 +1,18 @@
 require 'shrine'
-require 'shrine/storage/file_system'
+require 'shrine/storage/s3'
 require 'image_processing/vips'
 
+s3_options = {
+  bucket: Rails.application.credentials.dig(:digitalocean, :bucket),
+  access_key_id: Rails.application.credentials.dig(:digitalocean, :access_key_id),
+  secret_access_key: Rails.application.credentials.dig(:digitalocean, :secret_access_key),
+  endpoint: 'https://nyc3.digitaloceanspaces.com',
+  region: 'nyc3'
+}
+
 Shrine.storages = {
-  cache: Shrine::Storage::FileSystem.new('public', prefix: 'uploads/cache'),
-  store: Shrine::Storage::FileSystem.new('public', prefix: 'uploads')
+  cache: Shrine::Storage::S3.new(prefix: 'cache', upload_options: { acl: 'public-read' }, **s3_options),
+  store: Shrine::Storage::S3.new(prefix: 'store', upload_options: { acl: 'public-read' }, **s3_options)
 }
 
 Shrine.plugin :activerecord

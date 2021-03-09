@@ -26,6 +26,8 @@ gem 'devise', '~> 4.7'
 
 gem 'cancancan', '~> 3.2', '>= 3.2.1'
 
+gem 'aws-sdk-s3', '~> 1.90'
+
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 

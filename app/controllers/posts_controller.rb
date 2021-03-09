@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy like]
   before_action :authenticate_user!, except: %i[show index] # Require authentication to [create, edit] posts
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
 
   def index
     @posts = Post.all
@@ -21,6 +21,7 @@ class PostsController < ApplicationController
     # Attach current user to the post being created
     # Requires before_action above, else Rails will complain about current_user being nil
     @post = Post.new(post_params.merge(user: current_user))
+    authorize! :create, @post
 
     respond_to do |format|
       if @post.save

@@ -27,7 +27,7 @@
       <div class="card-body p-0 p-md-2 <%= object.image ? 'text-center' : 'journal-card' %>">
         <% if object.image %>
           <%= link_to object do %>
-            <%= image_tag object.image(:medium).url, class: 'rounded-3 img-fluid' %>
+            <%= image_tag object.image(:scaled).url, class: 'rounded-3 img-fluid' %>
           <% end %>
         <% else %>
           <div class="p-3 p-md-2 markdown-body">

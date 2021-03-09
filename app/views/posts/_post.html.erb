@@ -1,6 +1,6 @@
 <% if post.image %>
   <%= link_to post, class: 'm-1 gallery-link shadow flex-grow-1' do %>
-    <%= image_tag post.image(:medium).url, class: 'rounded-3 gallery-image' %>
+    <%= image_tag post.image(:scaled).url, class: 'rounded-3 gallery-image' %>
   <% end %>
 <% end %>
 

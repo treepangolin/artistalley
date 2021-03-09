@@ -2,5 +2,5 @@
   <th scope="row"><%= invite.id %></th>
   <td><%= invite.code %></td>
   <td><%= invite.redeemed %></td>
-  <td><%= invite.user.nil? ? 'Nobody' : invite.user %></td>
+  <td><%= invite.user.nil? ? 'Nobody' : link_to(invite.user.username, invite.user) %></td>
 </tr>
