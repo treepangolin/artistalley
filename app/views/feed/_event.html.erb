@@ -1,7 +1,7 @@
 <div class="row mb-4">
   <div class="col-auto">
     <% if owner.avatar %>
-      <%= image_tag owner.avatar(:small).url, class: 'rounded-circle profile-avatar feed-avatar' %>
+      <%= image_tag owner.avatar(:scaled).url, class: 'rounded-circle profile-avatar feed-avatar' %>
     <% else %>
       <i class="fas fa-paw no-avatar__feed profile-avatar"></i>
     <% end %>

@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
       <% if @post.user.avatar %>
         <%= link_to @post.user, class: 'stretched-link' do %>
-          <%= image_tag @post.user.avatar(:small).url, width: 48, height: 48, class: 'rounded-circle me-3' %>
+          <%= image_tag @post.user.avatar(:scaled).url, width: 48, height: 48, class: 'rounded-circle me-3' %>
         <% end %>
       <% else %>
         <%= link_to @post.user, class: 'stretched-link' do %>

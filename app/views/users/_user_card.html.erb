@@ -3,7 +3,7 @@
     <!-- Avatar -->
     <div class="col-4 col-md-12">
       <% if @user.avatar %>
-        <%= image_tag @user.avatar(:small).url, class: 'rounded-circle profile-avatar w-100' %>
+        <%= image_tag @user.avatar(:scaled).url, class: 'rounded-circle profile-avatar w-100' %>
       <% else %>
         <i class="fas fa-paw no-avatar__user-card profile-avatar card-img-top"></i>
       <% end %>

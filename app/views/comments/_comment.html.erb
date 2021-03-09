@@ -7,7 +7,7 @@
       <div class="d-flex flex-row align-items-center">
         <%= link_to comment.user, class: 'me-2' do %>
           <% if comment.user.avatar %>
-            <%= image_tag comment.user.avatar(:small).url, width: 24, height: 24, class: 'rounded-circle' %>
+            <%= image_tag comment.user.avatar(:scaled).url, width: 24, height: 24, class: 'rounded-circle' %>
           <% else %>
             <i class="fas fa-paw no-avatar__xsmall"></i>
           <% end %>
